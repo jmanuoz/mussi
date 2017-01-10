@@ -103,33 +103,28 @@
                         </li>
                        <li class="nav-item">
                             <a href="" class="nav-link nav-toggle">
-                                <i class="icon-plus"></i>
-                                <span class="title">Crear</span>
+                                <i class="icon-share"></i>
+                                <span class="title">Redes Sociales</span>
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('Servicios/crear');?>" class="nav-link nav-toggle">
-                                        <i class="icon-settings"></i> Servicios
+                                    <a href="<?php echo site_url('Redes/twitter');?>" class="nav-link nav-toggle">
+                                        <i class="icon-user"></i> Twitter
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('Usuarios/crear');?>" class="nav-link nav-toggle">
-                                        <i class="icon-user"></i> Usuario
+                                    <a href="<?php echo site_url('Redes/fb');?>" class="nav-link nav-toggle">
+                                        <i class="icon-user"></i> Facebook
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('Encuestas/crear');?>" class="nav-link nav-toggle">
-                                        <i class="icon-bar-chart"></i> Encuestas
+                                    <a href="<?php echo site_url('Redes/instagram');?>" class="nav-link nav-toggle">
+                                        <i class="icon-bar-chart"></i> Instagram
                                     </a>
                                 </li>     
                                
-                                <li class="nav-item">
-                                    <a href="<?php echo site_url('Informes_Medios/crear');?>"  class="nav-link">
-                                        <i class="icon-feed"></i> Informe Medios
-                                    </a>
-                                    
-                                </li>
+                               
                             </ul>
                         </li>
                         <li class="nav-item">
