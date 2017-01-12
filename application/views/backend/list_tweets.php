@@ -8,6 +8,10 @@
             <input type="checkbox" name="tweets[]" value='<?php echo json_encode($tweet)?>'>
             <br>
             <?php echo $tweet->date ?><br>
+             <?php if ($tweet->posted_by != ''): ?>
+                            Twiteado por: <?php echo $tweet->posted_by ?><br>
+
+                            <?php endif; ?>
             <?php echo $tweet->text ?>
             <br>
             <?php foreach ($tweet->media as $media):
