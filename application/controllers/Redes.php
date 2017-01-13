@@ -71,8 +71,51 @@ class Redes extends CI_Controller {
     
     
     public function instagram(){
-        //$views = array('nav_backend_header');
-            $data = array('css'=>array(),'js'=>array());
-		$this->get_view(array(),$data);
+        $this->load->library('instagram_api');
+        $login_link = '';
+        if($this->session->userdata('instagram-token') != '') {
+            if(isset($_POST['instaPosts'])){
+                foreach($_POST['instaPosts'] as $instaPost){
+                    $post = json_decode($instaPost);
+                    $this->posts->create(Posts::INSTAGRAM_ID,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by);                
+                }
+
+            }
+            $this->load->library('formatInstaPosts');
+            $this->instagram_api->access_token = $this->session->userdata('instagram-token');
+            
+            $insta_posts = $this->instagram_api->get_popular_media();
+            $posts = $this->formatinstaposts->formatPosts($insta_posts->data);
+//            echo '<pre>';print_r($insta_posts);echo'</pre>';exit;
+        }else{
+            $login_link = anchor($this->instagram_api->instagram_login(), 'Instagram Login'); 
+        }
+            $data = array('css'=>array(),'js'=>array(),'login_link'=>$login_link,'posts'=>$posts);
+		$this->get_view(array('/backend/list_instagram'),$data);
+    }
+    
+    function get_code_insta() {
+	$this->load->library('instagram_api');
+        // Make sure that there is a GET variable of code
+        if(isset($_GET['code']) && $_GET['code'] != '') {
+
+                $auth_response = $this->instagram_api->authorize($_GET['code']);
+                echo  $auth_response->access_token;exit;
+                // Set up session variables containing some useful Instagram data
+                $this->session->set_userdata('instagram-token', $auth_response->access_token);
+                $this->session->set_userdata('instagram-username', $auth_response->user->username);
+                $this->session->set_userdata('instagram-profile-picture', $auth_response->user->profile_picture);
+                $this->session->set_userdata('instagram-user-id', $auth_response->user->id);
+                $this->session->set_userdata('instagram-full-name', $auth_response->user->full_name);
+                
+                redirect('Redes/instagram');
+
+        } else {
+
+                // There was no GET variable so redirect back to the homepage
+                redirect('Backend');
+
+        }
+	
     }
 }
