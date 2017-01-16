@@ -10,11 +10,22 @@
         <?php else : ?>
             <div class="page-content">
                 <form name="form" method="POST" action="">
+                    <input type="hidden" name="social_net" id="social_net" value="<?php echo $social_net?>" />
                     <?php foreach ($posts as $post): ?>
                         <div>
 
-                            <input type="checkbox" name="posts[]" value='<?php echo json_encode($post) ?>'>
+                            <input type="checkbox" name="posts[]" id="checkbox-<?php echo $post->post_id?>" value='<?php echo json_encode($post) ?>' <?php echo ($post->saved == true)?'checked disabled':'';?>>
+                            <?php if($post->saved == true):?>
+                            <a id="remove_post-<?php echo $post->post_id?>" onclick="quitar_post('<?php echo $post->post_id?>')">remover</a>
+                            <?php endif;?>
+                            
                             <br>
+                            <select name="category-<?php echo $post->post_id?>">
+                            <?php foreach($categories as $category):?>
+                                <option value="<?php echo $category->categories_id ?>"><?php echo $category->name ?></option>
+                            <?php endforeach; ?>
+
+                        </select><br>
                             <?php echo $post->date ?><br>
                              <?php if ($post->posted_by != ''): ?>
                             Publicado por: <?php echo $post->posted_by ?><br>

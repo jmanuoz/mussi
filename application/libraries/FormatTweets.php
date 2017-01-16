@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 require_once APPPATH.'interfaces/FormatPosts.php';
-class FormatTweets implements formatposts{
+class FormatTweets extends formatposts{
     
     public function formatMedia($media) {
         $formattedMedia = new stdClass();
         $formattedMedia->type = $media->type;
-
+        
         if($media->type == 'photo'){
             $formattedMedia->src = $media->media_url;
         }else{
@@ -33,6 +33,7 @@ class FormatTweets implements formatposts{
             $formattedTweet->profile_image = $tweet->user->profile_image_url;
             $formattedTweet->date = $tweet->created_at;
             $formattedTweet->post_id = $tweet->id;
+            $formattedTweet->saved = $this->check_saved($tweet->id);
             if (isset($tweet->retweeted_status->full_text)) {
                 $formattedTweet->text = $tweet->retweeted_status->full_text;
                 $formattedTweet->posted_by = $tweet->retweeted_status->user->name;

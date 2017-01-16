@@ -6,13 +6,14 @@
  * and open the template in the editor.
  */
 require_once APPPATH.'interfaces/FormatPosts.php';
-class FormatInstaPosts implements FormatPosts{
+class FormatInstaPosts extends FormatPosts{
     public function formatPosts($posts){
         $formattedPosts = array();
         foreach($posts as $post){
             $formattedPost = new stdClass();
             $formattedPost->date = date('Y-m-d H:i:s', $post->created_time);
             $formattedPost->post_id = $post->id;
+            $formattedPost->saved = $this->check_saved($post->id);
             $formattedPost->type = $post->type;
             if(isset($post->caption->text)){
                  $formattedPost->text = $post->caption->text;

@@ -63,6 +63,7 @@ Class Notificacion extends CI_Model {
         
     
     public function vistas($id_usuario){
+        return 0;
         $sql = "UPDATE notificaciones SET  vista=1
         WHERE id_usuario = $id_usuario";
          

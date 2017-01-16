@@ -6,9 +6,19 @@
  * and open the template in the editor.
  */
 
-interface FormatPosts{
+abstract class FormatPosts{
     
-    public function formatPosts($posts);
+    protected $_post_model;
     
-    public function formatMedia($media);
+    public function __construct($post_model) {
+        $this->_post_model = $post_model[0];
+    }
+    
+    public function formatPosts($posts){}
+    
+    public function formatMedia($media){}
+    
+    public function check_saved($social_post_id){
+        return $this->_post_model->check_saved($social_post_id);              
+    }
 }

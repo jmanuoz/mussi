@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 require_once APPPATH.'interfaces/FormatPosts.php';
-class FormatFbPosts implements FormatPosts{
+class FormatFbPosts extends FormatPosts{
     public function formatPosts($posts){
         $formattedPosts = array();
         foreach($posts as $post){
@@ -14,7 +14,7 @@ class FormatFbPosts implements FormatPosts{
             $formattedPost->date = $post['created_time'];
             $formattedPost->post_id = $post['id'];
             $formattedPost->type = $post['type'];
-            
+            $formattedPost->saved = $this->check_saved($post['id']);
             $formattedPost->posted_by = '';
             if(isset($post['message'])){
                 $formattedPost->text = $post['message'];

@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#ver_notificaicones').hover(function(){
        $.ajax({
             type: "POST",
-            url: $('#site_url').val() + '/Notificaciones/vistas/',
+            url: $('#site_url').val() + 'Notificaciones/vistas/',
             data: {},
             dataType: "json",
             success: function (response) {
