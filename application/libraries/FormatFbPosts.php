@@ -14,7 +14,12 @@ class FormatFbPosts extends FormatPosts{
             $formattedPost->date = $post['created_time'];
             $formattedPost->post_id = $post['id'];
             $formattedPost->type = $post['type'];
-            $formattedPost->saved = $this->check_saved($post['id']);
+            $formattedPost->saved = $this->check_saved($post['id']); 
+            if($formattedPost->saved){
+               $formattedPost->category_id = $this->_post->category_id;
+            }else{
+              $formattedPost->category_id = -1;  
+            }
             $formattedPost->posted_by = '';
             if(isset($post['message'])){
                 $formattedPost->text = $post['message'];

@@ -12,7 +12,7 @@
         <?php foreach ($posts as $post): ?>
         <div>
            
-            <input type="checkbox" id="checkbox-<?php echo $post->post_id?>" name="instaPosts[]" value='<?php echo json_encode($post)?>' <?php echo ($post->saved == true)?'checked disabled="disabled"':'';?>>
+            <input type="checkbox" id="checkbox-<?php echo $post->post_id?>" name="instaPosts[]" value='<?php echo json_encode($post)?>' <?php echo ($post->saved == true)?'checked "':'';?>>
              <?php if($post->saved == true):?>
             <a id="remove_post-<?php echo $post->post_id?>" onclick="quitar_post('<?php echo $post->post_id?>')">remover</a>
             <?php endif;?>
@@ -20,7 +20,9 @@
             
              <select name="category-<?php echo $post->post_id?>">
                 <?php foreach($categories as $category):?>
-                    <option value="<?php echo $category->categories_id ?>"><?php echo $category->name ?></option>
+                    <option value="<?php echo $category->categories_id ?>"
+                        <?php echo ($category->categories_id == $post->category_id)?'SELECTED':''?>>
+                        <?php echo $category->name ?></option>
                 <?php endforeach; ?>
                 
             </select><br>

@@ -6,14 +6,16 @@
         <?php foreach ($tweets as $tweet): ?>
         <div>
             <img alt="jpatriciomussi" src="<?php echo $tweet->profile_image ?>" />
-            <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked disabled="disabled"':'';?>>
+            <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked "':'';?>>
              <?php if($tweet->saved == true):?>
                 <a id="remove_post-<?php echo $tweet->post_id?>" onclick="quitar_post('<?php echo $tweet->post_id?>')">remover</a>
             <?php endif;?>
             <br>
             <select name="category-<?php echo $tweet->post_id?>">
                 <?php foreach($categories as $category):?>
-                    <option value="<?php echo $category->categories_id ?>"><?php echo $category->name ?></option>
+                    <option value="<?php echo $category->categories_id ?>"
+                             <?php echo ($category->categories_id == $tweet->category_id)?'SELECTED':''?>>
+                        <?php echo $category->name ?></option>
                 <?php endforeach; ?>
                 
             </select><br>

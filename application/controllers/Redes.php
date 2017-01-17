@@ -17,13 +17,12 @@ class Redes extends CI_Controller {
         $this->load->library('formatTweets',array($this->posts));
         if(isset($_POST['tweets'])){
             foreach($_POST['tweets'] as $tweet){
-                $post = json_decode($tweet);       
-                if(!$this->posts->check_saved($post->post_id)){
-                    $datetime = new DateTime($post->date);
-                    $datetime->setTimezone(new DateTimeZone('America/Argentina/Buenos_Aires'));
-                    $date = $datetime->format('Y-m-d H:i:s');               
-                    $this->posts->create(Posts::TWITTER_ID,$post->post_id,$date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id) );                
-                }
+                $post = json_decode($tweet);     
+                $datetime = new DateTime($post->date);
+                $datetime->setTimezone(new DateTimeZone('America/Argentina/Buenos_Aires'));
+                $date = $datetime->format('Y-m-d H:i:s');
+                $post->date = $date;
+                $this->save_post($post, Posts::TWITTER_ID);
             }
             
         }
@@ -45,7 +44,15 @@ class Redes extends CI_Controller {
         $this->get_view(array('/backend/list_tweets'),$data);
     }
     
-    
+    protected function save_post($post, $social_net){
+        if(!$this->posts->check_saved($post->post_id)){
+            $this->posts->create($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id));
+        }else{
+            
+            $this->posts->update($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id));
+        }
+                                     
+    }
 
     public function fb(){
         $this->load->library('facebook');
@@ -56,13 +63,11 @@ class Redes extends CI_Controller {
         if (  $authenticated){  
             if(isset($_POST['posts'])){
                 foreach($_POST['posts'] as $posts){
-                    $post = json_decode($posts);               
-                    if(!$this->posts->check_saved($post->post_id)){
-                        $datetime = new DateTime($post->date);
-                        $datetime->setTimezone(new DateTimeZone('America/Argentina/Buenos_Aires'));
-                        $date = $datetime->format('Y-m-d H:i:s');               
-                        $this->posts->create(Posts::FACEBOOK_ID,$post->post_id,$date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id));                
-                    }
+                    $post = json_decode($posts); 
+                    $datetime = new DateTime($post->date);
+                    $datetime->setTimezone(new DateTimeZone('America/Argentina/Buenos_Aires'));
+                    $post->date = $datetime->format('Y-m-d H:i:s');      
+                    $this->save_post($post, Posts::FACEBOOK_ID);
                 }
                 
             }
@@ -86,9 +91,7 @@ class Redes extends CI_Controller {
             if(isset($_POST['instaPosts'])){
                 foreach($_POST['instaPosts'] as $instaPost){
                     $post = json_decode($instaPost);
-                    if(!$this->posts->check_saved($post->post_id)){
-                        $this->posts->create(Posts::INSTAGRAM_ID,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id));                
-                    }
+                    $this->save_post($post, Posts::INSTAGRAM_ID);
                 }
 
             }

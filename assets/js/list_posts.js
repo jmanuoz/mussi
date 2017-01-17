@@ -11,6 +11,7 @@
                 $( '#remove_post-'+post_id ).remove();
                 $('#checkbox-'+post_id).removeAttr("checked"); 
                 $('#checkbox-'+post_id).parent().removeClass('checked');
+                $( '#checkbox-'+post_id).unbind( "click",noUnckeck );
                 $('#uniform-checkbox-'+post_id).removeClass('disabled');
             }
         },
@@ -20,3 +21,11 @@
     });
     return false;
 }
+var noUnckeck = function(){
+     $(this).parent().addClass('checked');
+    return false;
+};
+$( document ).ready(function() {
+    $( "input:checked" ).bind( "click", noUnckeck );
+
+});
