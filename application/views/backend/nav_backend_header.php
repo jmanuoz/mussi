@@ -130,30 +130,19 @@
                         <li class="nav-item">
                             <a href="ayuda.html" class="nav-link nav-toggle">
                                 <i class="icon-pencil"></i>
-                                <span class="title">Editar</span>
+                                <span class="title">Notas</span>
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
                                  <li class="nav-item">
-                                    <a href="<?php echo site_url('Servicios/lista_servicios');?>" class="nav-link nav-toggle">
-                                        <i class="icon-settings"></i> Servicios
+                                    <a href="<?php echo site_url('Note/create');?>" class="nav-link nav-toggle">
+                                        <i class="icon-settings"></i> Crear
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('Usuarios/lista_usuarios');?>" class="nav-link nav-toggle">
-                                        <i class="icon-user"></i> Usuario
+                                    <a href="<?php echo site_url('Note/list_notes');?>" class="nav-link nav-toggle">
+                                        <i class="icon-user"></i> Ver Notas
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo site_url('Encuestas/lista_encuestas');?>" class="nav-link nav-toggle">
-                                        <i class="icon-bar-chart"></i> Encuestas
-                                    </a>
-                                </li>     
-                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('Informes_Medios/lista_informes');?>"  class="nav-link">
-                                        <i class="icon-feed"></i> Informe Medios
-                                    </a>
-                                    
                                 </li>
                             </ul>
                         </li>
