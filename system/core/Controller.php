@@ -74,13 +74,13 @@ class CI_Controller {
 		{
 			$this->$var =& load_class($class);
 		}
-                
+
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
-                if(!$this->session->userdata('logged_in') && get_class($this) != 'Login'&& get_class($this) != 'Welcome')
-                {                  
-                  redirect('login', 'index');   
+                if(!$this->session->userdata('logged_in') && get_class($this) != 'Login' && get_class($this) != 'Welcome' && get_class($this) != 'Frontend')
+                {
+                  redirect('login', 'index');
                 }
 	}
 
@@ -95,17 +95,17 @@ class CI_Controller {
 	public static function &get_instance()
 	{
 		return self::$instance;
-	}        
-        
-        
+	}
+
+
         public function get_view($views=array(), $data=array()){
-            $userData = $this->session->userdata('logged_in');          
+            $userData = $this->session->userdata('logged_in');
             if ($userData['profile'] == ADMIN_PROFILE) {
                 $nav_data = array('user'=>$userData['data'],'section'=>$this->router->fetch_method());
-                
-               
-                
-                
+
+
+
+
                 if(!isset($data['css'])){
                     $data['css'] = array();
                 }
@@ -122,11 +122,11 @@ class CI_Controller {
                 $this->acceso_restringido();
             }
         }
-        
+
         public function acceso_restringido(){
             $this->load->view('errors/html/access_denied',array('heading'=>'Acceso Restringido', 'message'=>'No tiene permiso para navegar aquí'));
         }
-        
+
         public function get_front_view($views=array(), $data=array()){
             $userData = $this->session->userdata('logged_in');
             $nav_data = array('user'=>$userData['data'],'section'=>$this->router->fetch_method());
@@ -150,7 +150,7 @@ class CI_Controller {
             }
             $this->load->model('notificacion', '', TRUE);
             $nav_data['notificaciones'] = $this->notificacion->obtener_no_vistas($userData['data']->id);
-             $nav_data['notificaciones_encuestas'] = $this->notificacion->obtener_no_vistas_por_tipo($userData['data']->id,ENCUESTA_NOTIFICACION);    
+             $nav_data['notificaciones_encuestas'] = $this->notificacion->obtener_no_vistas_por_tipo($userData['data']->id,ENCUESTA_NOTIFICACION);
             $this->load->view('header',$data);
             $this->load->view('nav_header',$nav_data);
             foreach($views as $view){
@@ -158,7 +158,7 @@ class CI_Controller {
             }
             $this->load->view('footer',$data);
         }
-        
+
         public function get_user_id(){
             $userData = $this->session->userdata('logged_in');
             return $userData['data']->id;
