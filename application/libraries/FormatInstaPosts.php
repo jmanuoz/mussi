@@ -13,11 +13,11 @@ class FormatInstaPosts extends FormatPosts{
             $formattedPost = new stdClass();
             $formattedPost->date = date('Y-m-d H:i:s', $post->created_time);
             $formattedPost->post_id = $post->id;
-            $formattedPost->saved = $this->check_saved($post->id); 
+            $formattedPost->saved = $this->check_saved($post->id,POSTS::INSTAGRAM_ID); 
             if($formattedPost->saved){
-               $formattedPost->category_id = $this->_post->category_id;
+               $formattedPost->categories = $this->_post->categories;
             }else{
-              $formattedPost->category_id = -1;  
+              $formattedPost->categories =  array(); 
             }
             $formattedPost->type = $post->type;
             if(isset($post->caption->text)){

@@ -11,10 +11,10 @@
                 <a id="remove_post-<?php echo $tweet->post_id?>" onclick="quitar_post('<?php echo $tweet->post_id?>')">remover</a>
             <?php endif;?>
             <br>
-            <select name="category-<?php echo $tweet->post_id?>">
+            <select name="category-<?php echo $tweet->post_id?>[]" id="category-<?php echo $tweet->post_id?>" class="js-example-basic-multiple" multiple="multiple">
                 <?php foreach($categories as $category):?>
                     <option value="<?php echo $category->categories_id ?>"
-                             <?php echo ($category->categories_id == $tweet->category_id)?'SELECTED':''?>>
+                             <?php echo in_array(array('category_id'=>$category->categories_id), $tweet->categories)?'SELECTED':''?>>
                         <?php echo $category->name ?></option>
                 <?php endforeach; ?>
                 

@@ -14,11 +14,11 @@ class FormatFbPosts extends FormatPosts{
             $formattedPost->date = $post['created_time'];
             $formattedPost->post_id = $post['id'];
             $formattedPost->type = $post['type'];
-            $formattedPost->saved = $this->check_saved($post['id']); 
+            $formattedPost->saved = $this->check_saved($post['id'],POSTS::FACEBOOK_ID); 
             if($formattedPost->saved){
-               $formattedPost->category_id = $this->_post->category_id;
+               $formattedPost->categories = $this->_post->categories;
             }else{
-              $formattedPost->category_id = -1;  
+              $formattedPost->categories = array();
             }
             $formattedPost->posted_by = '';
             if(isset($post['message'])){
@@ -44,7 +44,11 @@ class FormatFbPosts extends FormatPosts{
             }elseif($post['type'] == 'link'){                
                 $formattedPost->type = 'link';
                 $formattedPost->link = $post['link'];
-                $formattedPost->media = $this->formatMedia($post['attachments']['data']);
+                if(isset($post['attachments']['data'])){
+                    $formattedPost->media = $this->formatMedia($post['attachments']['data']);
+                }else{
+                    $formattedPost->media = array();
+                }
             }else{
                 
                 $formattedPost->media = $this->formatMedia($post['attachments']['data']);

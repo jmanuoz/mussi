@@ -26,7 +26,7 @@ class Redes extends CI_Controller {
             }
 
         }
-
+       
         $connection = $this->twitteroauth->create(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
         $data = array(
             'screen_name' => TW_USER,
@@ -39,18 +39,26 @@ class Redes extends CI_Controller {
         $categories = $this->categories->get_categories();
 //        echo'<pre>';
 //        print_r($result);echo'</pre>';exit;
-
-        $data = array('css'=>array(),'js'=>array('/js/list_posts.js'),'tweets'=>$tweets,'categories'=>$categories,'social_net'=>POSTS::TWITTER_ID);
+       
+        $data = array('css'=>array(),'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),'tweets'=>$tweets,'categories'=>$categories,'social_net'=>POSTS::TWITTER_ID);
         $this->get_view(array('/backend/list_tweets'),$data);
     }
 
     protected function save_post($post, $social_net){
-        if(!$this->posts->check_saved($post->post_id)){
-            $this->posts->create($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id));
+        $post_db = $this->posts->get_by_social_post_id($post->post_id, $social_net);
+        if(count($post_db)==0){
+            $id_post = $this->posts->create($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by);
+            
         }else{
-
-            $this->posts->update($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by,$this->input->post('category-'.$post->post_id));
+            $this->posts->update($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by);
+            $this->posts->delete_categories($post_db[0]->posts_id);
+            $id_post = $post_db[0]->posts_id;           
         }
+        if($this->input->post('category-'.$post->post_id) != ''){
+                foreach($this->input->post('category-'.$post->post_id) as $category){
+                    $this->posts->set_category($id_post,$category);
+                }
+            }
 
     }
 
@@ -71,14 +79,14 @@ class Redes extends CI_Controller {
                 }
 
             }
-            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,link,attachments&limit=25',array());
+            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,link,attachments&limit=15',array());
             $posts = $this->formatfbposts->formatPosts($posts['data']);
-//            echo'<pre>';print_r($posts);echo'</pre>';exit;
+          // echo'<pre>';print_r($posts);echo'</pre>';exit;
         }else{
             $posts = array();
         }
         $categories = $this->categories->get_categories();
-        $data = array('css'=>array(),'js'=>array('/js/list_posts.js'),'authenticated'=>$authenticated,'posts'=>$posts,'categories'=>$categories,'social_net'=>POSTS::FACEBOOK_ID);
+        $data = array('css'=>array(),'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),'authenticated'=>$authenticated,'posts'=>$posts,'categories'=>$categories,'social_net'=>POSTS::FACEBOOK_ID);
         $this->get_view(array('/backend/list_fb_posts'),$data);
     }
 
@@ -106,7 +114,7 @@ class Redes extends CI_Controller {
             $login_link = anchor($this->instagram_api->instagram_login(), 'Instagram Login');
         }
         $categories = $this->categories->get_categories();
-        $data = array('css'=>array(),'js'=>array('/js/list_posts.js'),'login_link'=>$login_link,'posts'=>$posts,'categories'=>$categories,'social_net'=>POSTS::INSTAGRAM_ID);
+        $data = array('css'=>array(),'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),'login_link'=>$login_link,'posts'=>$posts,'categories'=>$categories,'social_net'=>POSTS::INSTAGRAM_ID);
 		    $this->get_view(array('/backend/list_instagram'),$data);
     }
 
@@ -138,6 +146,8 @@ class Redes extends CI_Controller {
         public function quitar_post($social_post_id, $social_net){
           $this->load->model('posts', '', TRUE);
             $result = array();
+            $post =  $this->posts->get_by_social_post_id($social_post_id,$social_net);
+            $this->posts->delete_categories($post[0]->posts_id);
             $result['success'] = $this->posts->remove_by_social_post_id($social_post_id,$social_net);
             $result['message'] = '';
             echo json_encode($result);

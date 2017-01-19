@@ -14,6 +14,9 @@ function quitar_post(post_id) {
                     $('#checkbox-' + post_id).parent().removeClass('checked');
                     $('#checkbox-' + post_id).unbind("click", noUnckeck);
                     $('#uniform-checkbox-' + post_id).removeClass('disabled');
+                    $("#category-"+post_id).each(function () { //added a each loop here
+                        $(this).select2('val', '')
+                    });
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -30,5 +33,5 @@ var noUnckeck = function () {
 };
 $(document).ready(function () {
     $("input:checked").bind("click", noUnckeck);
-
+    $(".js-example-basic-multiple").select2();
 });

@@ -33,11 +33,12 @@ class FormatTweets extends formatposts{
             $formattedTweet->profile_image = $tweet->user->profile_image_url;
             $formattedTweet->date = $tweet->created_at;
             $formattedTweet->post_id = $tweet->id;
-            $formattedTweet->saved = $this->check_saved($tweet->id); 
+            $formattedTweet->saved = $this->check_saved($tweet->id,POSTS::TWITTER_ID); 
             if($formattedTweet->saved){
-               $formattedTweet->category_id = $this->_post->category_id;
+               
+               $formattedTweet->categories = $this->_post->categories;
             }else{
-              $formattedTweet->category_id = -1;  
+              $formattedTweet->categories = array();  
             }
             if (isset($tweet->retweeted_status->full_text)) {
                 $formattedTweet->text = $tweet->retweeted_status->full_text;

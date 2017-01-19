@@ -20,11 +20,11 @@ abstract class FormatPosts{
     
     public function formatMedia($media){}
     
-    public function check_saved($social_post_id){
-        $post = $this->_post_model->get_by_social_post_id($social_post_id);
+    public function check_saved($social_post_id, $social_net){
+        $post = $this->_post_model->get_by_social_post_id($social_post_id, $social_net);
         if(count($post) > 0){
             $this->_post = $post[0];
-            
+            $this->_post->categories = $this->_post_model->get_categories($this->_post->posts_id);
             return true;
         }else{
             return false;
