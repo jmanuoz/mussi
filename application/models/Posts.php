@@ -77,20 +77,11 @@ Class Posts extends CI_Model {
     }
     
     public function get_categories($post_id){
-        $this->db->from('categories_posts');
-        
-        $this->db->where('post_id', $post_id);
-        
-        $this->db->select('category_id');
-      
-       
-        $query = $this->db->get();
-        
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
-        } else {
-            return array();
-        }
+        $sql = "SELECT cp.category_id, c.name as category_name FROM categories c, categories_posts cp WHERE cp.category_id = c.categories_id AND cp.post_id = $post_id";
+         
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
     }
     
     public function delete_categories($post_id){
@@ -98,5 +89,20 @@ Class Posts extends CI_Model {
         $this->db->where('post_id', $post_id);
         $q = $this->db->delete('categories_posts');
         return $q;
+    }    
+    
+    
+    public function get_posts($limit, $start){
+        $this->db->from('posts');
+        $this->db->select('*');
+        $this->db->limit($limit, $start);  
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0){
+          return $query->result();      
+        } else {
+          return array();
+        }
     }
 }
