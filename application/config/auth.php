@@ -15,5 +15,5 @@
 $config['cookie_name']      = 'autologin';
 $config['cookie_encrypt']   = TRUE;
 $config['autologin_table']  = 'autologin';
-$config['autologin_expire'] = 5184000; // 60 days
+$config['autologin_expire'] = 0; // 60 days
 $config['hash_algorithm']   = 'sha256';

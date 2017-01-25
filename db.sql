@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
 -- Host: localhost    Database: mussi
 -- ------------------------------------------------------
--- Server version	5.7.16-0ubuntu0.16.04.1
+-- Server version	5.7.17-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,31 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `autologin`
+--
+
+DROP TABLE IF EXISTS `autologin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `autologin` (
+  `user` int(11) NOT NULL,
+  `series` varchar(255) NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY (`user`,`series`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `autologin`
+--
+
+LOCK TABLES `autologin` WRITE;
+/*!40000 ALTER TABLE `autologin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `autologin` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `categories`
@@ -76,7 +101,7 @@ CREATE TABLE `categories_posts` (
   `category_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`categories_posts_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci';
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +110,7 @@ CREATE TABLE `categories_posts` (
 
 LOCK TABLES `categories_posts` WRITE;
 /*!40000 ALTER TABLE `categories_posts` DISABLE KEYS */;
-INSERT INTO `categories_posts` VALUES (20,2,67),(21,3,67),(22,7,67),(45,2,73),(46,7,73),(55,2,75);
+INSERT INTO `categories_posts` VALUES (20,2,67),(21,3,67),(22,7,67),(45,2,73),(46,7,73),(55,2,75),(57,2,5);
 /*!40000 ALTER TABLE `categories_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-19 18:58:10
+-- Dump completed on 2017-01-25 17:31:00

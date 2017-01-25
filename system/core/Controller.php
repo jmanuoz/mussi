@@ -78,7 +78,8 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
-                if(!$this->session->userdata('logged_in') && get_class($this) != 'Login' && get_class($this) != 'Welcome' && get_class($this) != 'Frontend')
+                
+                if(!$this->auth->loggedin() && get_class($this) != 'Login' && get_class($this) != 'Welcome' && get_class($this) != 'Frontend')
                 {
                   redirect('login', 'index');
                 }

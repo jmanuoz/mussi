@@ -125,6 +125,7 @@ class Login extends CI_Controller {
                     'profile' => $row->profile,
                     'data'=>$row
                 );
+                $this->auth->login($row->id, $this->input->post('remember_me'));
                 $this->session->set_userdata('logged_in', $sess_array);
             }
             return TRUE;

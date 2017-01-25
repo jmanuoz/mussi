@@ -84,6 +84,14 @@ Class Posts extends CI_Model {
         return $result;
     }
     
+    public function get_categoriesId_by_postId($post_id){
+        $sql = "SELECT cp.category_id FROM categories c, categories_posts cp WHERE cp.category_id = c.categories_id AND cp.post_id = $post_id";
+         
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result;
+    }
+    
     public function delete_categories($post_id){
          
         $this->db->where('post_id', $post_id);
