@@ -14,6 +14,7 @@ class Redes extends CI_Controller {
     public function twitter(){
         $this->load->library('twitteroauth');
         $this->load->model('categories', '', TRUE);
+        $this->load->model('socialnets', '', TRUE);
         $this->load->library('formatTweets',array($this->posts));
         if(isset($_POST['tweets'])){
             foreach($_POST['tweets'] as $tweet){
@@ -24,7 +25,7 @@ class Redes extends CI_Controller {
                 $post->date = $date;
                 $this->save_post($post, Posts::TWITTER_ID);
             }
-
+            $this->socialnets->update_followers(POSTS::TWITTER_ID, $this->get_twitter_followers());
         }
        
         $connection = $this->twitteroauth->create(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
@@ -66,6 +67,7 @@ class Redes extends CI_Controller {
         $this->load->library('facebook');
         $this->load->helper('url');
         $this->load->model('categories', '', TRUE);
+        $this->load->model('socialnets', '', TRUE);
         $this->load->library('formatFbPosts',array($this->posts));
         $authenticated = $this->facebook->is_authenticated();
         if (  $authenticated){
@@ -77,7 +79,7 @@ class Redes extends CI_Controller {
                     $post->date = $datetime->format('Y-m-d H:i:s');
                     $this->save_post($post, Posts::FACEBOOK_ID);
                 }
-
+                $this->socialnets->update_followers(POSTS::FACEBOOK_ID, $this->get_facebook_followers());
             }
             $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,link,attachments&limit=15',array());
             $posts = $this->formatfbposts->formatPosts($posts['data']);
@@ -94,6 +96,7 @@ class Redes extends CI_Controller {
     public function instagram(){
         $this->load->library('instagram_api');
         $this->load->model('categories', '', TRUE);
+        $this->load->model('socialnets', '', TRUE);
         $login_link = '';
         if($this->session->userdata('instagram-token') != '') {
             if(isset($_POST['instaPosts'])){
@@ -101,7 +104,7 @@ class Redes extends CI_Controller {
                     $post = json_decode($instaPost);
                     $this->save_post($post, Posts::INSTAGRAM_ID);
                 }
-
+                $this->socialnets->update_followers(POSTS::INSTAGRAM_ID, $this->get_instagram_followers());
             }
             $this->load->library('formatInstaPosts',array($this->posts));
             $this->instagram_api->access_token = $this->session->userdata('instagram-token');
@@ -152,5 +155,35 @@ class Redes extends CI_Controller {
             $result['message'] = '';
             echo json_encode($result);
         }
+        
+        
+          
+          public function get_instagram_followers(){
+            $this->load->library('instagram_api');
+            $this->instagram_api->access_token = $this->session->userdata('instagram-token');
+            $userInfo = $this->instagram_api->get_user(INSTAGRAM_ID);
+            return $userInfo->data->counts->followed_by;
+          }
+          
+          public function get_facebook_followers(){
+              $this->load->library('facebook');
+                if (  $this->facebook->is_authenticated()){
+                    $result = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'?fields=fan_count',array());
+                    return $result['fan_count'];
+                }
+                
+          }
+          
+          protected function get_twitter_followers(){
+              $this->load->library('twitteroauth');
+            $connection = $this->twitteroauth->create(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
+            $data = array(
+                'screen_name' => TW_USER,
+                'tweet_mode'=>'extended'
+
+            );
+            $result = $connection->get('users/lookup', $data);
+            return $result[0]->followers_count;
+          }
 
     }

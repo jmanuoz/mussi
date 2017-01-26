@@ -17,6 +17,12 @@ class Frontend extends CI_Controller {
     
   }
   
+  public function get_followers(){
+      $this->load->model('socialnets', '', TRUE);
+      $result = $this->socialnets->get_followers();
+      echo json_encode($result);
+  }
+  
  
 
 

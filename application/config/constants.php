@@ -100,3 +100,5 @@ define('TW_ACCESS_TOKEN_SECRET',"26PyOkiEcbjEkqm1UdeEcu1s8gry8fOmxVIfiiDlZ0O91")
 define('TW_USER','jpatriciomussi');
 
 define('FACEBOOK_PAGE_ID','185666064280');
+
+define('INSTAGRAM_ID','2226281848');
