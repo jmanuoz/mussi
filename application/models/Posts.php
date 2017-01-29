@@ -8,9 +8,9 @@ Class Posts extends CI_Model {
 
     const INSTAGRAM_ID = 3;
 
-    public function create($social_net,$social_post_id,$date,$text,$media,$posted_by){
-         $sql = "INSERT INTO posts (social_net,social_post_id,date,text,media,posted_by)
-        VALUES ($social_net,'$social_post_id','$date','$text','$media','$posted_by')";
+    public function create($social_net,$social_post_id,$date,$text,$media,$posted_by, $link){
+         $sql = "INSERT INTO posts (social_net,social_post_id,date,text,media,posted_by, link)
+        VALUES ($social_net,'$social_post_id','$date','$text','$media','$posted_by', '$link')";
 
         $this->db->query($sql);
         if($this->db->affected_rows() > 0){
@@ -20,9 +20,9 @@ Class Posts extends CI_Model {
         }
    }
 
-   public function update($social_net,$social_post_id,$date,$text,$media,$posted_by){
+   public function update($social_net,$social_post_id,$date,$text,$media,$posted_by, $link){
         $sql = "UPDATE posts SET  "
-                . "date = '$date',text = '$text',media = '$media',posted_by = '$posted_by'
+                . "date = '$date',text = '$text',media = '$media',posted_by = '$posted_by', link = '$link'
         WHERE social_net=$social_net and social_post_id = '$social_post_id'";
 
         $this->db->query($sql);

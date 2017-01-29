@@ -16,7 +16,7 @@ abstract class FormatPosts{
         $this->_post_model = $post_model[0];
     }
     
-    public function formatPosts($posts){}
+  //  public function formatPosts($posts){}
     
     public function formatMedia($media){}
     

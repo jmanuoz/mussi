@@ -8,6 +8,8 @@
 require_once APPPATH.'interfaces/FormatPosts.php';
 class FormatTweets extends formatposts{
     
+    protected $_url_twitterStatus = 'https://twitter.com/statuses/';
+    
     public function formatMedia($media) {
         $formattedMedia = new stdClass();
         $formattedMedia->type = $media->type;
@@ -32,8 +34,9 @@ class FormatTweets extends formatposts{
             $formattedTweet = new stdClass();
             $formattedTweet->profile_image = $tweet->user->profile_image_url;
             $formattedTweet->date = $tweet->created_at;
-            $formattedTweet->post_id = $tweet->id;
-            $formattedTweet->saved = $this->check_saved($tweet->id,POSTS::TWITTER_ID); 
+            $formattedTweet->post_id = $tweet->id_str;
+            $formattedTweet->saved = $this->check_saved($tweet->id_str,POSTS::TWITTER_ID); 
+            $formattedTweet->link = $this->_url_twitterStatus.$tweet->id_str;
             if($formattedTweet->saved){
                
                $formattedTweet->categories = $this->_post->categories;
