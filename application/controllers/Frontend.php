@@ -14,16 +14,28 @@ class Frontend extends CI_Controller {
           $post->categories = $this->posts->get_categories($post->posts_id);
       }
       echo json_encode($result);
-    
+
   }
-  
+
   public function get_followers(){
       $this->load->model('socialnets', '', TRUE);
       $result = $this->socialnets->get_followers();
       echo json_encode($result);
   }
-  
- 
+
+  public function get_categories(){
+      $this->load->model('posts', '', TRUE);
+      $result = $this->posts->get_categoriesAll();
+      echo json_encode($result);
+  }
+
+  public function get_categories_number($category){
+      $this->load->model('posts', '', TRUE);
+      $result = $this->posts->get_categoriesAll();
+      echo json_encode($result);
+  }
+
+
 
 
 } ?>
