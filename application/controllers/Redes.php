@@ -81,9 +81,10 @@ class Redes extends CI_Controller {
                 }
                 $this->socialnets->update_followers(POSTS::FACEBOOK_ID, $this->get_facebook_followers());
             }
-            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,link,attachments&limit=15',array());
+            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,permalink_url,link,attachments&limit=15',array());
+            //echo'<pre>';print_r($posts);echo'</pre>';exit;
             $posts = $this->formatfbposts->formatPosts($posts['data']);
-          // echo'<pre>';print_r($posts);echo'</pre>';exit;
+           
         }else{
             $posts = array();
         }
@@ -185,5 +186,16 @@ class Redes extends CI_Controller {
             $result = $connection->get('users/lookup', $data);
             return $result[0]->followers_count;
           }
+          
+          public function youtube(){
+        
+            $video= "sample.mp4";//video file which is in videos folder (this should be outside application folder)
+            $title= "your custom title for youtube video v3"; //your title for youtube video
+            $desc= "your custom youtube video description"; //your description for youtube video
+            $tags=["rahultvn","youtubeapi3"]; //your custom tags for youtube video
+            $privacy_status="public"; //video status public or private
+            $youtube=$this->google_client_api->youtube_upload($video,$title,$desc,$tags,$privacy_status);
+            print_r($youtube);
+        }
 
     }

@@ -15,7 +15,7 @@ class FormatFbPosts extends FormatPosts{
             $formattedPost->post_id = $post['id'];
             $formattedPost->type = $post['type'];
             $formattedPost->saved = $this->check_saved($post['id'],POSTS::FACEBOOK_ID); 
-            $formattedPost->link = '';
+            $formattedPost->link = $post['permalink_url'];
             if($formattedPost->saved){
                $formattedPost->categories = $this->_post->categories;
             }else{

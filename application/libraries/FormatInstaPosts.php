@@ -14,7 +14,7 @@ class FormatInstaPosts extends FormatPosts{
             $formattedPost->date = date('Y-m-d H:i:s', $post->created_time);
             $formattedPost->post_id = $post->id;
             $formattedPost->saved = $this->check_saved($post->id,POSTS::INSTAGRAM_ID); 
-            $formattedPost->link = '';
+            $formattedPost->link = $post->link;
             if($formattedPost->saved){
                $formattedPost->categories = $this->_post->categories;
             }else{
