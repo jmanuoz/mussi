@@ -48,10 +48,10 @@ class Redes extends CI_Controller {
     protected function save_post($post, $social_net){
         $post_db = $this->posts->get_by_social_post_id($post->post_id, $social_net);
         if(count($post_db)==0){
-            $id_post = $this->posts->create($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by);
+            $id_post = $this->posts->create($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by, $post->link);
             
         }else{
-            $this->posts->update($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by);
+            $this->posts->update($social_net,$post->post_id,$post->date,$post->text,json_encode($post->media),$post->posted_by, $post->link);
             $this->posts->delete_categories($post_db[0]->posts_id);
             $id_post = $post_db[0]->posts_id;           
         }

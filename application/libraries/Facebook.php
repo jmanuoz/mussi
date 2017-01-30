@@ -48,7 +48,7 @@ Class Facebook
     /**
      * @var array
      */
-    private $batch_request_pool = [];
+    private $batch_request_pool = array();
 
     /**
      * Facebook constructor.
@@ -64,11 +64,11 @@ Class Facebook
 
         if (!isset($this->fb))
         {
-            $this->fb = new FB([
+            $this->fb = new FB(array(
                 'app_id'                => $this->config->item('facebook_app_id'),
                 'app_secret'            => $this->config->item('facebook_app_secret'),
                 'default_graph_version' => $this->config->item('facebook_graph_version')
-            ]);
+            ));
         }
 
         // Load correct helper depending on login type
@@ -135,7 +135,7 @@ Class Facebook
      *
      * @return array
      */
-    public function request($method, $endpoint, $params = [], $access_token = null)
+    public function request($method, $endpoint, $params = array(), $access_token = null)
     {
         try
         {
@@ -162,16 +162,16 @@ Class Facebook
      *
      * @return array
      */
-    public function user_upload_request($path_to_file, $params = [], $type = self::UPLOAD_TYPE_IMAGE, $access_token = null)
+    public function user_upload_request($path_to_file, $params = array(), $type = self::UPLOAD_TYPE_IMAGE, $access_token = null)
     {
         if ($type === self::UPLOAD_TYPE_IMAGE)
         {
-            $data = ['source' => $this->fb->fileToUpload($path_to_file)] + $params;
+            $data = array('source' => $this->fb->fileToUpload($path_to_file)) + $params;
             $endpoint = '/me/photos';
         }
         elseif ($type === self::UPLOAD_TYPE_VIDEO)
         {
-            $data = ['source' => $this->fb->videoToUpload($path_to_file)] + $params;
+            $data = array('source' => $this->fb->videoToUpload($path_to_file)) + $params;
             $endpoint = '/me/videos';
         }
         else
@@ -199,11 +199,11 @@ Class Facebook
      * @param array $params
      * @param null  $access_token
      */
-    public function add_to_batch_pool($key, $method, $endpoint, $params = [], $access_token = null)
+    public function add_to_batch_pool($key, $method, $endpoint, $params = array(), $access_token = null)
     {
         $this->batch_request_pool = array_merge(
             $this->batch_request_pool,
-            [$key => $this->fb->request($method, $endpoint, $params, $access_token)]
+            array($key => $this->fb->request($method, $endpoint, $params, $access_token))
         );
     }
 
@@ -230,9 +230,9 @@ Class Facebook
         try
         {
             $responses = $this->fb->sendBatchRequest($this->batch_request_pool);
-            $this->batch_request_pool = [];
+            $this->batch_request_pool = array();
 
-            $data = [];
+            $data = array();
             foreach ($responses as $key => $response)
             {
                 $data[$key] = $response->getDecodedBody();
@@ -433,7 +433,7 @@ Class Facebook
     private function logError($code, $message)
     {
         log_message('error', '[FACEBOOK PHP SDK] code: ' . $code.' | message: '.$message);
-        return ['error' => $code, 'message' => $message];
+        return array('error' => $code, 'message' => $message);
     }
 
     /**
