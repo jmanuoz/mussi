@@ -81,9 +81,10 @@ class Redes extends CI_Controller {
                 }
                 $this->socialnets->update_followers(POSTS::FACEBOOK_ID, $this->get_facebook_followers());
             }
-            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,link,attachments&limit=15',array());
+            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,permalink_url,link,attachments&limit=15',array());
+            //echo'<pre>';print_r($posts);echo'</pre>';exit;
             $posts = $this->formatfbposts->formatPosts($posts['data']);
-          // echo'<pre>';print_r($posts);echo'</pre>';exit;
+           
         }else{
             $posts = array();
         }
@@ -175,7 +176,7 @@ class Redes extends CI_Controller {
           }
           
           protected function get_twitter_followers(){
-              $this->load->library('twitteroauth');
+            $this->load->library('twitteroauth');
             $connection = $this->twitteroauth->create(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
             $data = array(
                 'screen_name' => TW_USER,
@@ -184,6 +185,38 @@ class Redes extends CI_Controller {
             );
             $result = $connection->get('users/lookup', $data);
             return $result[0]->followers_count;
+          }
+          
+          public function youtube(){
+            $this->load->library('youtube',array('key' => YOUTUBE_API_KEY));
+            $this->load->model('categories', '', TRUE);
+            $this->load->model('socialnets', '', TRUE);
+            $this->load->library('formatYoutubePosts',array($this->posts));
+            if(isset($_POST['instaPosts'])){
+                foreach($_POST['instaPosts'] as $instaPost){
+                    $post = json_decode($instaPost);
+                    $this->save_post($post, Posts::YOUTUBE_ID);
+                }
+                $this->socialnets->update_followers(POSTS::YOUTUBE_ID, $this->get_youtube_followers());
+            }
+            $params = array(
+                        'q' => '',                        
+                        'channelId' => YOUTUBE_CHANNEL_ID,
+                        'part' => ' snippet',      
+                        'maxResults' => 8
+                    );
+            $result = $this->youtube->searchAdvanced($params);
+            $youtubePosts = $this->formatyoutubeposts->formatPosts($result);
+            $categories = $this->categories->get_categories();
+            // echo '<pre>';print_r($result); echo '</pre>';exit;
+            $data = array('css'=>array(),'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),'posts'=>$youtubePosts,'categories'=>$categories,'social_net'=>POSTS::INSTAGRAM_ID);
+		    $this->get_view(array('/backend/list_youtube'),$data);
+           
+          }
+          
+          public function get_youtube_followers(){
+              $result = $this->youtube->getChannelById(YOUTUBE_CHANNEL_ID);
+              return $result->statistics->subscriberCount;
           }
 
     }

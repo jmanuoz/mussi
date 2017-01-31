@@ -7,6 +7,8 @@ Class Posts extends CI_Model {
     const FACEBOOK_ID = 2;
 
     const INSTAGRAM_ID = 3;
+    
+    const YOUTUBE_ID = 4;
 
     public function create($social_net,$social_post_id,$date,$text,$media,$posted_by, $link){
          $sql = "INSERT INTO posts (social_net,social_post_id,date,text,media,posted_by, link)

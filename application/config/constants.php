@@ -102,3 +102,6 @@ define('TW_USER','jpatriciomussi');
 define('FACEBOOK_PAGE_ID','185666064280');
 
 define('INSTAGRAM_ID','2226281848');
+
+define('YOUTUBE_API_KEY', 'AIzaSyAEey6xAJzmcLiMtKp7HmBR92Tcgd9vpOM');
+define('YOUTUBE_CHANNEL_ID', 'UCahljWK5KE2EPWiu6lO9b3g');
