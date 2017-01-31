@@ -123,7 +123,11 @@
                                         <i class="icon-bar-chart"></i> Instagram
                                     </a>
                                 </li>     
-                               
+                               <li class="nav-item">
+                                    <a href="<?php echo site_url('Redes/youtube');?>" class="nav-link nav-toggle">
+                                        <i class="icon-bar-chart"></i> Youtube
+                                    </a>
+                                </li>  
                                
                             </ul>
                         </li>
