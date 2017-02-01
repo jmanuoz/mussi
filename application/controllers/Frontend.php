@@ -31,7 +31,7 @@ class Frontend extends CI_Controller {
 
   public function get_categories_number($category){
       $this->load->model('posts', '', TRUE);
-      $result = $this->posts->get_categoriesAll();
+      $result = $this->posts->get_categoriesNumber($category);
       echo json_encode($result);
   }
 

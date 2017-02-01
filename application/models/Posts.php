@@ -7,7 +7,7 @@ Class Posts extends CI_Model {
     const FACEBOOK_ID = 2;
 
     const INSTAGRAM_ID = 3;
-    
+
     const YOUTUBE_ID = 4;
 
     public function create($social_net,$social_post_id,$date,$text,$media,$posted_by, $link){
@@ -89,7 +89,7 @@ Class Posts extends CI_Model {
     public function get_categoriesAll(){
         $sql = "SELECT c.name as category_name, (SELECT count(categories_posts_id) as total
                 FROM categories_posts as cp
-                WHERE cp.category_id=c.categories_id) FROM categories c ";
+                WHERE cp.category_id=c.categories_id) as t FROM categories c ";
 
         $query = $this->db->query($sql);
         $result = $query->result();
