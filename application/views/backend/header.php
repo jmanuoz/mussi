@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
         <head>
         <meta charset="utf-8" />
         <title>Doxa | Ágora Consultores</title>
@@ -9,6 +9,8 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+       <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+       
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/');?>/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/');?>/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
@@ -32,7 +34,7 @@
         <link href="<?php echo base_url('assets/');?>/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="<?php echo base_url('assets/');?>/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->       
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
         <?php foreach($css as $file): ?>
         <link href="<?php echo base_url('assets/').$file;?>" rel="stylesheet" type="text/css" />
         <?php endforeach; ?>
@@ -44,7 +46,7 @@
         <link href="<?php echo base_url('assets/');?>/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/');?>/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
-      
+
         <link rel="shortcut icon" href="favicon.ico" />
         <input type="hidden" name="base_url" id="site_url" value="<?php echo site_url();?>" />
         <input type="hidden" name="base_url" id="base_url" value="<?php echo base_url();?>" />

@@ -7,7 +7,7 @@ Class Posts extends CI_Model {
     const FACEBOOK_ID = 2;
 
     const INSTAGRAM_ID = 3;
-    
+
     const YOUTUBE_ID = 4;
 
     public function create($social_net,$social_post_id,$date,$text,$media,$posted_by, $link){
@@ -65,9 +65,9 @@ Class Posts extends CI_Model {
         $q = $this->db->delete('posts');
         return $q;
     }
-    
+
     public function set_category($post_id,$category_id){
-        $sql = "INSERT INTO categories_posts (post_id,category_id) 
+        $sql = "INSERT INTO categories_posts (post_id,category_id)
         VALUES ($post_id,$category_id)";
 
         $this->db->query($sql);
@@ -77,40 +77,60 @@ Class Posts extends CI_Model {
             return $this->db->affected_rows();
         }
     }
-    
+
     public function get_categories($post_id){
         $sql = "SELECT cp.category_id, c.name as category_name FROM categories c, categories_posts cp WHERE cp.category_id = c.categories_id AND cp.post_id = $post_id";
-         
+
         $query = $this->db->query($sql);
         $result = $query->result();
         return $result;
     }
-    
+
+    public function get_categoriesAll(){
+        $sql = "SELECT c.name as category_name, (SELECT count(categories_posts_id) as total
+                FROM categories_posts as cp
+                WHERE cp.category_id=c.categories_id) as t FROM categories c ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+
+    public function get_categoriesNumber($c){
+        $sql = "SELECT count(categories_posts_id) as total
+                FROM categories_posts
+                WHERE category_id=$c";
+
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+
     public function get_categoriesId_by_postId($post_id){
         $sql = "SELECT cp.category_id FROM categories c, categories_posts cp WHERE cp.category_id = c.categories_id AND cp.post_id = $post_id";
-         
+
         $query = $this->db->query($sql);
         $result = $query->result_array();
         return $result;
     }
-    
+
     public function delete_categories($post_id){
-         
+
         $this->db->where('post_id', $post_id);
         $q = $this->db->delete('categories_posts');
         return $q;
-    }    
-    
-    
+    }
+
+
     public function get_posts($limit, $start){
         $this->db->from('posts');
         $this->db->select('*');
-        $this->db->limit($limit, $start);  
+        $this->db->limit($limit, $start);
 
         $query = $this->db->get();
 
         if ($query->num_rows() > 0){
-          return $query->result();      
+          return $query->result();
         } else {
           return array();
         }

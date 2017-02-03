@@ -14,9 +14,9 @@ class Frontend extends CI_Controller {
           $post->categories = $this->posts->get_categories($post->posts_id);
       }
       echo json_encode($result);
-    
+
   }
-  
+
   public function get_followers(){
       $this->load->model('socialnets', '', TRUE);
       $result = $this->socialnets->get_followers();
@@ -53,6 +53,22 @@ class Frontend extends CI_Controller {
       echo json_encode($response);
       //echo'<pre>';print_r($this->google_calendar->get_events());echo '</pre>';
   }
+
+
+  public function get_categories(){
+      $this->load->model('posts', '', TRUE);
+      $result = $this->posts->get_categoriesAll();
+      echo json_encode($result);
+  }
+
+  public function get_categories_number($category){
+      $this->load->model('posts', '', TRUE);
+      $result = $this->posts->get_categoriesNumber($category);
+      echo json_encode($result);
+  }
+
+
+
 
 
 } ?>
