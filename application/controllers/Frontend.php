@@ -23,7 +23,36 @@ class Frontend extends CI_Controller {
       echo json_encode($result);
   }
   
- 
+  public function get_calendar(){
+      $response = new stdClass();
+      try{
+        $this->load->library('google/calendar/google_calendar');
+        $fourDaysAgo = date("Y-m-d\TH:i:sP",strtotime('-4 day', strtotime('12:00:00')));
+        $today = date("Y-m-d\TH:i:sP",strtotime('12:00:00'));
+        $events_past = $this->google_calendar->get_events($fourDaysAgo,$today);  
+        $events_future = $this->google_calendar->get_events($today); 
+        $items = $events_past['modelData']['items'];
+        $lastEvent = array();
+        $lastEvent[] = array_pop($items);
+        $events = array_merge($lastEvent,$events_future['modelData']['items']);
+        $response->status = true;
+        $jsonEvents = array();        
+        foreach($events as $event){
+            $jsonEvent = new stdClass();
+            $jsonEvent->date = $event['start']['dateTime'];
+            $jsonEvent->description = $event['summary'];
+            $jsonEvents[] = $jsonEvent;
+        }
+        $response->events = $jsonEvents;
+      }catch (Exception $e){
+        $response->status = false;  
+        $response->error = $e->getMessage();
+        log_message('error', '[Google Calendar]'.$e->getMessage());
+      }
+      
+      echo json_encode($response);
+      //echo'<pre>';print_r($this->google_calendar->get_events());echo '</pre>';
+  }
 
 
 } ?>

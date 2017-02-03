@@ -105,3 +105,6 @@ define('INSTAGRAM_ID','2226281848');
 
 define('YOUTUBE_API_KEY', 'AIzaSyAEey6xAJzmcLiMtKp7HmBR92Tcgd9vpOM');
 define('YOUTUBE_CHANNEL_ID', 'UCahljWK5KE2EPWiu6lO9b3g');
+
+define('GOOGLE_APPLICATION_NAME','Mussi');
+define('GOOGLE_CALENDAR_ID','l28hliccvhpj7bg0dbvg2tvcho@group.calendar.google.com');
