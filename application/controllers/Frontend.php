@@ -67,8 +67,21 @@ class Frontend extends CI_Controller {
       echo json_encode($result);
   }
 
+  public function message_to_user(){
+      $this->load->model('messages', '', TRUE);
+      $id = $this->messages->create($type,$name,$email,$message,0);
+      $response = new stdClass();
+      if($id > 0){
+          $response->status = 1;
+          $response->id = $id;
+          $response->message = 'Se envío exitosamente';
+      }else{
+          $response->status = 0;
+          $response->message = 'No se pudo crear el mensaje';
+      }
+      echo json_encode($response);
+  }
 
+} 
 
-
-
-} ?>
+?>
