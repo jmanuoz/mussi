@@ -31,6 +31,7 @@ class Frontend extends CI_Controller {
         $today = date("Y-m-d\TH:i:sP",strtotime('12:00:00'));
         $events_past = $this->google_calendar->get_events($fourDaysAgo,$today);  
         $events_future = $this->google_calendar->get_events($today); 
+       // echo '<pre>';print_r($events_past);echo'</pre>';exit;
         $items = $events_past['modelData']['items'];
         $lastEvent = array();
         $lastEvent[] = array_pop($items);
@@ -41,6 +42,7 @@ class Frontend extends CI_Controller {
             $jsonEvent = new stdClass();
             $jsonEvent->date = $event['start']['dateTime'];
             $jsonEvent->description = $event['summary'];
+            $jsonEvent->location = isset($event['location'])?$event['location']:'';
             $jsonEvents[] = $jsonEvent;
         }
         $response->events = $jsonEvents;
