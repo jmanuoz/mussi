@@ -72,8 +72,8 @@ class Frontend extends CI_Controller {
   }
 
   public function message_to_user(){
-      $this->load->model('messages', '', TRUE);
-      $id = $this->messages->create($name,$email,$message,0);
+      $this->load->model('messages_model', '', TRUE);
+      $id = $this->messages_model->create($this->input->post('name'),$this->input->post('email'),$this->input->post('mensaje'),0);
       $response = new stdClass();
       if($id > 0){
           $response->status = 1;

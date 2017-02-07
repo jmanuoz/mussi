@@ -151,9 +151,9 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="contacto.html" class="nav-link nav-toggle">
+                            <a href="<?php echo site_url('Messages/index');?>" class="nav-link nav-toggle">
                                 <i class="icon-bell"></i>
-                                <span class="title">Responder</span>
+                                <span class="title">Mensajes</span>
                                 <span class="selected"></span>
                                 <span class="badge badge-success">7</span>
                             </a>
