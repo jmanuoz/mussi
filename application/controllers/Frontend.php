@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+error_reporting(0);
 
 class Frontend extends CI_Controller {
 
@@ -22,22 +23,23 @@ class Frontend extends CI_Controller {
       $result = $this->socialnets->get_followers();
       echo json_encode($result);
   }
-  
+
   public function get_calendar(){
       $response = new stdClass();
       try{
         $this->load->library('google/calendar/google_calendar');
         $fourDaysAgo = date("Y-m-d\TH:i:sP",strtotime('-4 day', strtotime('12:00:00')));
         $today = date("Y-m-d\TH:i:sP",strtotime('12:00:00'));
-        $events_past = $this->google_calendar->get_events($fourDaysAgo,$today);  
-        $events_future = $this->google_calendar->get_events($today); 
-       // echo '<pre>';print_r($events_past);echo'</pre>';exit;
+
+        $events_past = $this->google_calendar->get_events($fourDaysAgo,$today);
+        $events_future = $this->google_calendar->get_events($today);
+
         $items = $events_past['modelData']['items'];
         $lastEvent = array();
         $lastEvent[] = array_pop($items);
         $events = array_merge($lastEvent,$events_future['modelData']['items']);
         $response->status = true;
-        $jsonEvents = array();        
+        $jsonEvents = array();
         foreach($events as $event){
             $jsonEvent = new stdClass();
             $jsonEvent->date = $event['start']['dateTime'];
@@ -47,11 +49,11 @@ class Frontend extends CI_Controller {
         }
         $response->events = $jsonEvents;
       }catch (Exception $e){
-        $response->status = false;  
+        $response->status = false;
         $response->error = $e->getMessage();
         log_message('error', '[Google Calendar]'.$e->getMessage());
       }
-      
+
       echo json_encode($response);
       //echo'<pre>';print_r($this->google_calendar->get_events());echo '</pre>';
   }
@@ -71,7 +73,7 @@ class Frontend extends CI_Controller {
 
   public function message_to_user(){
       $this->load->model('messages', '', TRUE);
-      $id = $this->messages->create($type,$name,$email,$message,0);
+      $id = $this->messages->create($name,$email,$message,0);
       $response = new stdClass();
       if($id > 0){
           $response->status = 1;
@@ -84,6 +86,6 @@ class Frontend extends CI_Controller {
       echo json_encode($response);
   }
 
-} 
+}
 
 ?>
