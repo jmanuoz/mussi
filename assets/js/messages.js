@@ -32,3 +32,29 @@ $(document).ready(function () {
         });
     });
 });
+
+function capture() {
+    $('#ulchats').html2canvas({
+        onrendered: function (canvas) {
+            //Set hidden field's value to image data (base-64 string)
+            $('#img_val').val(canvas.toDataURL("image/png"));
+            //Submit the form manually
+            
+            $.ajax({
+            type: "POST",
+            url: $('#site_url').val() + 'Messages/share_conversation',
+            data: {'img_val':$('#img_val').val(),'messages_id':$('#messages_id').val(),'texto_for_share':$('#texto_for_share').val()},
+            dataType: "json",
+            success: function (response) {
+
+                if (response.success == true) {
+                    alert('Se creo exitosamente el post');
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+
+            }
+        });
+        }
+    });
+}

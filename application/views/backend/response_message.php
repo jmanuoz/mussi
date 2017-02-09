@@ -12,7 +12,8 @@
     </div>
     <div class="portlet-body" id="chats">
         <div class="scroller" style="height:30% 40%;" data-always-visible="1" data-rail-visible1="1">
-            <ul class="chats">
+            
+            <ul class="chats" id="ulchats">
                <?php foreach($messages as $message):?>
                     <li class="<?php echo ($message->reply_to > 0) ? 'out' : 'in'; ?>">
                         <img class="avatar" alt="" src="" />
@@ -27,9 +28,11 @@
                     </li>
                 <?php endforeach; ?>    
             </ul>
+            
         </div>
        <input type="hidden" name="messages_id" id="messages_id" value="<?php echo $first_message_id ?>"/>
        <input type="hidden" name="username" id="username" value="<?php echo $username ?>"/>
+       
         <div class="chat-form">
             <div class="input-cont">
                 <input class="form-control" type="text" id="text" placeholder="Tipeá el comemtario acá y apretá la tilde para mandar..." /> </div>
@@ -39,7 +42,14 @@
                     <i class="fa fa-check icon-white"></i>
                 </a>
             </div>
+            
         </div>
+       
+            <input type="hidden" name="img_val" id="img_val" value="" />
+            <input type="hidden" name="messages_id" id="messages_id" value="<?php echo $first_message_id ?>"/>
+            <textarea name="texto_for_share" id="texto_for_share"></textarea>
+        
+       <input type="submit" value="Compartir" onclick="capture();" />
     </div>
 </div>
                     </div>
