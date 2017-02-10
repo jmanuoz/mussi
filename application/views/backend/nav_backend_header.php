@@ -20,17 +20,27 @@
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" id="ver_notificaicones" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-default" id="contador_notificaciones_nav"> 0</span>
+                                <span class="badge badge-default" id="contador_notificaciones_nav"> <?php echo count($notifications)?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>
-                                        <span class="bold" id="contador_notificaciones_nav_exp">0 notificaciones</span> pendientes</h3>
-                                    <a href="<?php echo site_url('Notificaciones/ver_admin') ?>">ver todas</a>
+                                        <span class="bold" id="contador_notificaciones_nav_exp"><?php echo count($notifications)?> notificaciones</span> pendientes</h3>
+                                    <a href="<?php echo site_url('Notifications/index') ?>">ver todas</a>
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                                       
+                                       <?php foreach($notifications as $notification): ?>
+                                            <li>
+                                            <a href="javascript:;">
+                                                <span class="time">Ahora</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-success">
+                                                        <i class="fa fa-comment"></i>
+                                                    </span> <?php echo $notification->text ?> </span>
+                                            </a>
+                                            </li>
+                                        <?php endforeach; ?>
                                         
 
                                     </ul>
@@ -155,7 +165,7 @@
                                 <i class="icon-bell"></i>
                                 <span class="title">Mensajes</span>
                                 <span class="selected"></span>
-                                <span class="badge badge-success">7</span>
+                                <span class="badge badge-success" id="messages_count"><?php echo count($messages); ?></span>
                             </a>
                         </li>
 

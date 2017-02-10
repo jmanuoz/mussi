@@ -11,7 +11,7 @@
 
     </div>
     <div class="portlet-body" id="chats">
-        <div class="scroller" style="height:30% 40%;" data-always-visible="1" data-rail-visible1="1">
+        <div class="scroller" style="height:100%;" data-always-visible="1" data-rail-visible1="1">
             
             <ul class="chats" id="ulchats">
                <?php foreach($messages as $message):?>

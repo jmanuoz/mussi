@@ -24,5 +24,5 @@ class Backend extends CI_Controller {
             $data = array('css'=>array(),'js'=>array());
 		$this->get_view(array(),$data);
                 
-	}
+	}    
 }

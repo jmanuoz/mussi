@@ -76,6 +76,8 @@ class Frontend extends CI_Controller {
       $id = $this->messages_model->create($this->input->post('name'),$this->input->post('email'),$this->input->post('mensaje'),0);
       $response = new stdClass();
       if($id > 0){
+          $this->load->model('notifications_model', '', TRUE);
+          $this->notifications_model->create(Notifications_model::NEW_MESSAGE,date('Y-m-d H:i:s'),'Tenes un nuevo mensaje');
           $response->status = 1;
           $response->id = $id;
           $response->message = 'Se envío exitosamente';

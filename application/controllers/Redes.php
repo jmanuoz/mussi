@@ -16,7 +16,7 @@ class Redes extends CI_Controller {
         $this->load->model('categories', '', TRUE);
         $this->load->model('socialnets', '', TRUE);
         $this->load->library('formatTweets',array($this->posts));
-        if(isset($_POST['tweets'])){
+        if(isset($_POST['tweets'])){           
             foreach($_POST['tweets'] as $tweet){
                 $post = json_decode($tweet);
                 $datetime = new DateTime($post->date);
@@ -59,7 +59,7 @@ class Redes extends CI_Controller {
                 foreach($this->input->post('category-'.$post->post_id) as $category){
                     $this->posts->set_category($id_post,$category);
                 }
-            }
+            }            
 
     }
 

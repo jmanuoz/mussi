@@ -103,8 +103,10 @@ class CI_Controller {
             $userData = $this->session->userdata('logged_in');
             if ($userData['profile'] == ADMIN_PROFILE) {
                 $nav_data = array('user'=>$userData['data'],'section'=>$this->router->fetch_method());
-
-
+                 $this->load->model('notifications_model', '', TRUE);
+                 $nav_data['notifications'] = $this->notifications_model->get_not_read();
+                 
+                $nav_data['messages'] = $this->notifications_model->get_not_read_by_type(NOTIFICATIONS_MODEL::NEW_MESSAGE);
 
 
                 if(!isset($data['css'])){
