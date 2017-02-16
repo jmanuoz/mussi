@@ -1,10 +1,10 @@
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
-        <?php if (!$this->facebook->is_authenticated()) : ?>
+        <?php if (!$authenticated) : ?>
 
             <div class="login">
-                <a href="<?php echo $this->facebook->login_url(); ?>">Login</a>
+                <a href="<?php echo $this->facebookinterface->login_url(); ?>">Login</a>
             </div>
 
         <?php else : ?>

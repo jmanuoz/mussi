@@ -159,11 +159,16 @@ class Instagram_api {
 	 * This function only requires your instagram client id and no Oauth token
 	 * @return std_class current popular media with associated data
 	 */
-	public function get_popular_media()
+	public function get_popular_media($last_post_id='')
 	{
 		
 		$popular_media_request_url = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=' . $this->access_token;
-		
+		if($last_post_id !=''){
+                    //en la api no funcion el min_id
+                    $popular_media_request_url .= '&min_id='.$last_post_id;
+                }
+                
+                
 		return $this->__apiCall($popular_media_request_url);
 		
 	}

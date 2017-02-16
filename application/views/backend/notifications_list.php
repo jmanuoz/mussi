@@ -35,7 +35,7 @@
                                 <div class="portlet-body">
                                     <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
                                         <ul class="feeds">
-                                            <?php foreach($notificaciones as $notificacion): ?>
+                                            <?php foreach($notifications as $notification): ?>
                                             <li>
                                                 <div class="col1">
                                                     <div class="cont">
@@ -45,16 +45,22 @@
                                                             </div>
                                                         </div>
                                                         <div class="cont-col2">
-                                                            <div class="desc"> Hay un <a href="<?php echo site_url('Encuestas/ver').'/'.$notificacion->id_modulo.'/'.$notificacion->id_usuario_notificante ?>">comentario nuevo </a>de <?php echo $notificacion->notificante_nombre.' '.$notificacion->notificante_apellido ?> en una encuesta.
-                                                                <a href="<?php echo site_url('Encuestas/ver').'/'.$notificacion->id_modulo.'/'.$notificacion->id_usuario_notificante ?>"><span class="label label-sm label-danger "> Contestar
-                                                                    <i class="fa fa-share"></i>
-                                                                </span></a>
-                                                            </div>
+                                                            <?php switch($notification->notifications_type_id){
+                                                                    default:?>
+                                                                        <div class="desc"> Hay nuevos posts en <a href="<?php echo site_url('Redes/twitter') ?>">twitter </a><span class="label label-sm label-danger "> Ver
+                                                                                    <i class="fa fa-share"></i>
+                                                                                </span></a>
+                                                                        </div>
+                                                                <?php
+                                                                        break;
+                                                                }
+                                                            ?>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col2">
-                                                    <div class="date"> <?php echo date('d/m/Y',strtotime($notificacion->fecha))?> </div>
+                                                    <div class="date"> <?php echo date('d/m/Y',strtotime($notification->date))?> </div>
                                                 </div>
                                             </li>
                                             <?php endforeach; ?>

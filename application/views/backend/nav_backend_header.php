@@ -168,7 +168,14 @@
                                 <span class="badge badge-success" id="messages_count"><?php echo count($messages); ?></span>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="<?php echo site_url('Notification/index');?>" class="nav-link nav-toggle">
+                                <i class="icon-bell"></i>
+                                <span class="title">Notificaciones</span>
+                                <span class="selected"></span>
+                                <span class="badge badge-success" id="messages_count"><?php echo count($notifications)?></span>
+                            </a>
+                        </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->

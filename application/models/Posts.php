@@ -87,7 +87,7 @@ Class Posts extends CI_Model {
         $result = $query->result();
         return $result;
     }
-
+    
     public function get_categoriesAll(){
         $sql = "SELECT c.name as category_name, (SELECT count(categories_posts_id) as total
                 FROM categories_posts as cp

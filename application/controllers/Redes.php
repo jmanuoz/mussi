@@ -12,10 +12,10 @@ class Redes extends CI_Controller {
     }
 
     public function twitter(){
-        $this->load->library('twitteroauth');
+        
         $this->load->model('categories', '', TRUE);
         $this->load->model('socialnets', '', TRUE);
-        $this->load->library('formatTweets',array($this->posts));
+        $this->load->library('twitterinterface',array($this->posts));
         if(isset($_POST['tweets'])){           
             foreach($_POST['tweets'] as $tweet){
                 $post = json_decode($tweet);
@@ -25,17 +25,11 @@ class Redes extends CI_Controller {
                 $post->date = $date;
                 $this->save_post($post, Posts::TWITTER_ID);
             }
-            $this->socialnets->update_followers(POSTS::TWITTER_ID, $this->get_twitter_followers());
+            $this->socialnets->update_followers(POSTS::TWITTER_ID, $this->twitterinterface->get_followers());
         }
        
-        $connection = $this->twitteroauth->create(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
-        $data = array(
-            'screen_name' => TW_USER,
-            'tweet_mode'=>'extended'
-
-        );
-        $result = $connection->get('statuses/user_timeline', $data);
-        $tweets = $this->formattweets->formatPosts($result);
+        
+        $tweets = $this->twitterinterface->get_posts();
 
         $categories = $this->categories->get_categories();
 //        echo'<pre>';
@@ -64,12 +58,12 @@ class Redes extends CI_Controller {
     }
 
     public function fb(){
-        $this->load->library('facebook');
+        $this->load->library('facebookInterface',array($this->posts));
         $this->load->helper('url');
         $this->load->model('categories', '', TRUE);
         $this->load->model('socialnets', '', TRUE);
-        $this->load->library('formatFbPosts',array($this->posts));
-        $authenticated = $this->facebook->is_authenticated();
+        
+        $authenticated = $this->facebookinterface->is_authenticated();
         if (  $authenticated){
             if(isset($_POST['posts'])){
                 foreach($_POST['posts'] as $posts){
@@ -79,11 +73,9 @@ class Redes extends CI_Controller {
                     $post->date = $datetime->format('Y-m-d H:i:s');
                     $this->save_post($post, Posts::FACEBOOK_ID);
                 }
-                $this->socialnets->update_followers(POSTS::FACEBOOK_ID, $this->get_facebook_followers());
-            }
-            $posts = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'/posts?fields=id,created_time,type,source,shares,name,status_type,message,permalink_url,link,attachments&limit=15',array());
-            //echo'<pre>';print_r($posts);echo'</pre>';exit;
-            $posts = $this->formatfbposts->formatPosts($posts['data']);
+                $this->socialnets->update_followers(POSTS::FACEBOOK_ID, $this->facebookinterface->get_followers());
+            }          
+            $posts = $this->facebookinterface->get_posts();
            
         }else{
             $posts = array();
@@ -95,7 +87,7 @@ class Redes extends CI_Controller {
 
 
     public function instagram(){
-        $this->load->library('instagram_api');
+        $this->load->library('instagramInterface',array($this->posts));
         $this->load->model('categories', '', TRUE);
         $this->load->model('socialnets', '', TRUE);
         $login_link = '';
@@ -105,17 +97,14 @@ class Redes extends CI_Controller {
                     $post = json_decode($instaPost);
                     $this->save_post($post, Posts::INSTAGRAM_ID);
                 }
-                $this->socialnets->update_followers(POSTS::INSTAGRAM_ID, $this->get_instagram_followers());
+                $this->socialnets->update_followers(POSTS::INSTAGRAM_ID, $this->instagraminterface->get_followers($this->session->userdata('instagram-token')));
             }
-            $this->load->library('formatInstaPosts',array($this->posts));
-            $this->instagram_api->access_token = $this->session->userdata('instagram-token');
-
-            $insta_posts = $this->instagram_api->get_popular_media();
-            $posts = $this->formatinstaposts->formatPosts($insta_posts->data);
+          
+            $posts = $this->instagraminterface->get_posts($this->session->userdata('instagram-token'));
 //            echo '<pre>';print_r($insta_posts);echo'</pre>';exit;
         }else{
             $posts = array();
-            $login_link = anchor($this->instagram_api->instagram_login(), 'Instagram Login');
+            $login_link = anchor( $this->instagraminterface->instagram_login(), 'Instagram Login');
         }
         $categories = $this->categories->get_categories();
         $data = array('css'=>array(),'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),'login_link'=>$login_link,'posts'=>$posts,'categories'=>$categories,'social_net'=>POSTS::INSTAGRAM_ID);
@@ -157,35 +146,7 @@ class Redes extends CI_Controller {
             echo json_encode($result);
         }
         
-        
           
-          public function get_instagram_followers(){
-            $this->load->library('instagram_api');
-            $this->instagram_api->access_token = $this->session->userdata('instagram-token');
-            $userInfo = $this->instagram_api->get_user(INSTAGRAM_ID);
-            return $userInfo->data->counts->followed_by;
-          }
-          
-          public function get_facebook_followers(){
-              $this->load->library('facebook');
-                if (  $this->facebook->is_authenticated()){
-                    $result = $this->facebook->request('get', '/'.FACEBOOK_PAGE_ID.'?fields=fan_count',array());
-                    return $result['fan_count'];
-                }
-                
-          }
-          
-          protected function get_twitter_followers(){
-            $this->load->library('twitteroauth');
-            $connection = $this->twitteroauth->create(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
-            $data = array(
-                'screen_name' => TW_USER,
-                'tweet_mode'=>'extended'
-
-            );
-            $result = $connection->get('users/lookup', $data);
-            return $result[0]->followers_count;
-          }
           
           public function youtube(){
             $this->load->library('youtube',array('key' => YOUTUBE_API_KEY));

@@ -4,6 +4,12 @@ Class Notifications_model extends CI_Model {
     
     const NEW_MESSAGE = 1;
     
+    const NEW_TWITTER_POSTS = 2;
+    
+    const NEW_FB_POSTS = 3;
+    
+    const NEW_INSTA_POSTS = 4;
+    
     public function create($notifications_type_id,$date,$text){
          $sql = "INSERT INTO notifications (notifications_type_id,date,text) 
         VALUES ($notifications_type_id,'$date','$text')";
@@ -29,6 +35,21 @@ Class Notifications_model extends CI_Model {
             return array();
         }
     }
+    public function get_last_notification_by_type($notificationType){
+        $sql = "SELECT noti.* FROM notifications noti "
+                . "WHERE noti.notifications_type_id = $notificationType "
+                
+                . " ORDER BY notifications_id DESC"
+                . " LIMIT 1";
+         
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            return $query->result()[0];
+        } else {
+            return array();
+        }
+    }
+    
     
     public function get_not_read_by_type($type_id){
         $sql = "SELECT noti.* FROM notifications noti "
@@ -46,11 +67,9 @@ Class Notifications_model extends CI_Model {
         }
     }
     
-     public function obtener_todas($user_id){
-        $sql = "SELECT noti.*, u.nombre as notificante_nombre, u.apellido as notificante_apellido FROM notificaciones noti, users u "
-                . "WHERE noti.id_usuario = $user_id "
-                . " AND noti.id_usuario_notificante = u.id "
-                . " ORDER BY id_notificacion DESC";
+     public function get_all(){
+         $sql = "SELECT noti.* FROM notifications noti "
+                . " ORDER BY notifications_id DESC";
          
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
