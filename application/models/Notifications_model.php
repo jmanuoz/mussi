@@ -10,6 +10,8 @@ Class Notifications_model extends CI_Model {
     
     const NEW_INSTA_POSTS = 4;
     
+    const NEW_YOUTUBE_POSTS = 5;
+    
     public function create($notifications_type_id,$date,$text){
          $sql = "INSERT INTO notifications (notifications_type_id,date,text) 
         VALUES ($notifications_type_id,'$date','$text')";

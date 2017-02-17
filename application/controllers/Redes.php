@@ -149,35 +149,26 @@ class Redes extends CI_Controller {
           
           
           public function youtube(){
-            $this->load->library('youtube',array('key' => YOUTUBE_API_KEY));
+            
             $this->load->model('categories', '', TRUE);
             $this->load->model('socialnets', '', TRUE);
-            $this->load->library('formatYoutubePosts',array($this->posts));
+            $this->load->library('youtubeInterface',array($this->posts));
             if(isset($_POST['instaPosts'])){
                 foreach($_POST['instaPosts'] as $instaPost){
                     $post = json_decode($instaPost);
                     $this->save_post($post, Posts::YOUTUBE_ID);
                 }
-                $this->socialnets->update_followers(POSTS::YOUTUBE_ID, $this->get_youtube_followers());
+                $this->socialnets->update_followers(POSTS::YOUTUBE_ID, $this->youtubeinterface->get_followers());
             }
-            $params = array(
-                        'q' => '',                        
-                        'channelId' => YOUTUBE_CHANNEL_ID,
-                        'part' => ' snippet',      
-                        'maxResults' => 8
-                    );
-            $result = $this->youtube->searchAdvanced($params);
-            $youtubePosts = $this->formatyoutubeposts->formatPosts($result);
+           
+            $youtubePosts = $this->youtubeinterface->get_posts();
             $categories = $this->categories->get_categories();
-            // echo '<pre>';print_r($result); echo '</pre>';exit;
+           
             $data = array('css'=>array(),'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),'posts'=>$youtubePosts,'categories'=>$categories,'social_net'=>POSTS::INSTAGRAM_ID);
 		    $this->get_view(array('/backend/list_youtube'),$data);
            
           }
           
-          public function get_youtube_followers(){
-              $result = $this->youtube->getChannelById(YOUTUBE_CHANNEL_ID);
-              return $result->statistics->subscriberCount;
-          }
+         
 
     }
