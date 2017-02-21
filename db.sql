@@ -77,7 +77,7 @@ CREATE TABLE `categories_notes` (
   `note_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`categoires_notes_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `categories_notes` (
 
 LOCK TABLES `categories_notes` WRITE;
 /*!40000 ALTER TABLE `categories_notes` DISABLE KEYS */;
-INSERT INTO `categories_notes` VALUES (1,4,2),(2,4,6),(3,5,2),(4,5,6);
+INSERT INTO `categories_notes` VALUES (1,4,2),(2,4,6),(3,5,2),(4,5,6),(5,6,3),(6,7,2);
 /*!40000 ALTER TABLE `categories_notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,9 +154,9 @@ CREATE TABLE `notes` (
   `notes_id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text,
   `title` varchar(100) DEFAULT '',
-  `description` varchar(400) NOT NULL DEFAULT '',
+  `image` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`notes_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +165,7 @@ CREATE TABLE `notes` (
 
 LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
-INSERT INTO `notes` VALUES (1,'','nota1','baja'),(2,'','nota 2','lasdasd as'),(3,'<h1>Hello world!</h1>\r\n\r\n<p>I&#39;m an instance of <a href=\"http://ckeditor.com\">CKEditor</a>.</p>\r\n','nota 3','asdasd asdas dasd'),(4,'<h1>Hello world!</h1>\r\n\r\n<p>I&#39;m an instance of <a href=\"http://ckeditor.com\">CKEditor</a>.</p>\r\n','qweqe qw','qweqwe qw '),(5,'<p>que se sho etoy reloco</p>\r\n','una nota','bien bien piola');
+INSERT INTO `notes` VALUES (1,'','nota1',''),(2,'','nota 2',''),(3,'<h1>Hello world!</h1>\r\n\r\n<p>I&#39;m an instance of <a href=\"http://ckeditor.com\">CKEditor</a>.</p>\r\n','nota 3',''),(4,'<h1>Hello world!</h1>\r\n\r\n<p>I&#39;m an instance of <a href=\"http://ckeditor.com\">CKEditor</a>.</p>\r\n','qweqe qw',''),(5,'<p>que se sho etoy reloco</p>\r\n','una nota',''),(6,'<p>el turco</p>\r\n','nota','note_6.jpeg'),(7,'<p>AAssad</p>\r\n','el turco','note_7.jpeg'),(8,'<p>sdfsdfsdf</p>\r\n','fsdfsdf','note_8.jpeg'),(9,'','fsdfsdf','note_9.jpeg'),(10,'<p>sdfsdfsdf</p>\r\n','fsdfsdf','note_10.jpeg'),(11,'<p>sdfsdfsdf</p>\r\n','fsdfsdf','note_11.jpeg'),(12,'<p>sdfsdfsdf</p>\r\n','fsdfsdf','note_12.jpeg'),(13,'','fsdfsdf','note_13.jpeg');
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES (1,1,'2017-02-10 18:29:21','Tenes un nuevo mensaje',1),(2,1,'2017-02-10 19:20:38','Tenes un nuevo mensaje',1),(4,2,'2017-02-13 19:30:57','Hay 20 tweets nuevos',1),(6,2,'2017-02-15 19:08:22','Hay 20 tweets nuevos',1),(7,2,'2017-02-15 19:10:54','Hay 20 tweets nuevos',1),(8,3,'2017-02-15 19:11:22','Hay 1 posts nuevos de Facebook',1),(9,2,'2017-02-15 19:11:23','Hay 20 tweets nuevos',1),(10,2,'2017-02-15 19:12:05','Hay 20 tweets nuevos',1),(11,2,'2017-02-15 19:17:52','Hay 20 tweets nuevos',1),(12,2,'2017-02-15 19:20:12','Hay 20 tweets nuevos',1),(13,2,'2017-02-15 19:20:35','Hay 20 tweets nuevos',1),(14,2,'2017-02-15 19:22:50','Hay 20 tweets nuevos',1),(15,4,'2017-02-16 19:14:52','Hay 20 posts nuevos de Instagram',1),(16,4,'2017-02-16 19:16:12','Hay 20 posts nuevos de Instagram',1),(17,4,'2017-02-16 19:21:04','Hay 20 posts nuevos de Instagram',1),(18,4,'2017-02-16 19:21:11','Hay 20 posts nuevos de Instagram',1),(19,4,'2017-02-16 19:21:28','Hay 20 posts nuevos de Instagram',1),(20,4,'2017-02-16 19:21:57','Hay 20 posts nuevos de Instagram',1),(21,4,'2017-02-16 19:51:23','Hay 19 posts nuevos de Instagram',1),(22,4,'2017-02-16 19:51:50','Hay 18 posts nuevos de Instagram',1),(23,4,'2017-02-16 19:52:10','Hay 17 posts nuevos de Instagram',1),(24,4,'2017-02-16 19:52:27','Hay 16 posts nuevos de Instagram',1),(25,4,'2017-02-16 19:53:20','Hay 4 posts nuevos de Instagram',1),(26,3,'2017-02-17 18:35:10','Hay 2 videos de nuevos de Youtube',0);
+INSERT INTO `notifications` VALUES (1,1,'2017-02-10 18:29:21','Tenes un nuevo mensaje',1),(2,1,'2017-02-10 19:20:38','Tenes un nuevo mensaje',1),(4,2,'2017-02-13 19:30:57','Hay 20 tweets nuevos',1),(6,2,'2017-02-15 19:08:22','Hay 20 tweets nuevos',1),(7,2,'2017-02-15 19:10:54','Hay 20 tweets nuevos',1),(8,3,'2017-02-15 19:11:22','Hay 1 posts nuevos de Facebook',1),(9,2,'2017-02-15 19:11:23','Hay 20 tweets nuevos',1),(10,2,'2017-02-15 19:12:05','Hay 20 tweets nuevos',1),(11,2,'2017-02-15 19:17:52','Hay 20 tweets nuevos',1),(12,2,'2017-02-15 19:20:12','Hay 20 tweets nuevos',1),(13,2,'2017-02-15 19:20:35','Hay 20 tweets nuevos',1),(14,2,'2017-02-15 19:22:50','Hay 20 tweets nuevos',1),(15,4,'2017-02-16 19:14:52','Hay 20 posts nuevos de Instagram',1),(16,4,'2017-02-16 19:16:12','Hay 20 posts nuevos de Instagram',1),(17,4,'2017-02-16 19:21:04','Hay 20 posts nuevos de Instagram',1),(18,4,'2017-02-16 19:21:11','Hay 20 posts nuevos de Instagram',1),(19,4,'2017-02-16 19:21:28','Hay 20 posts nuevos de Instagram',1),(20,4,'2017-02-16 19:21:57','Hay 20 posts nuevos de Instagram',1),(21,4,'2017-02-16 19:51:23','Hay 19 posts nuevos de Instagram',1),(22,4,'2017-02-16 19:51:50','Hay 18 posts nuevos de Instagram',1),(23,4,'2017-02-16 19:52:10','Hay 17 posts nuevos de Instagram',1),(24,4,'2017-02-16 19:52:27','Hay 16 posts nuevos de Instagram',1),(25,4,'2017-02-16 19:53:20','Hay 4 posts nuevos de Instagram',1),(26,3,'2017-02-17 18:35:10','Hay 2 videos de nuevos de Youtube',1);
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,4 +314,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-20 16:31:56
+-- Dump completed on 2017-02-21 16:27:21
