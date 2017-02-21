@@ -108,3 +108,5 @@ define('YOUTUBE_CHANNEL_ID', 'UCahljWK5KE2EPWiu6lO9b3g');
 
 define('GOOGLE_APPLICATION_NAME','Mussi');
 define('GOOGLE_CALENDAR_ID','l28hliccvhpj7bg0dbvg2tvcho@group.calendar.google.com');
+
+define('FOLDER_NOTE_IMAGES',BASEPATH.'../assets/img_notes/');

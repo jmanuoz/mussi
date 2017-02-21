@@ -1,6 +1,6 @@
 <?php
 
-function subirimagen($name,$tmpname,$ancho,$alto,$path,$nuevoNombre){
+function subirimagen($name,$tmpname,$path,$nuevoNombre){
 		
 	$filename = stripslashes($name);
   	$extension = getExtension($filename);

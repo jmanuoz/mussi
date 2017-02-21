@@ -1,9 +1,9 @@
 <?php
 
 Class Notes extends CI_Model {
-    public function create($title,$description, $content){
-        $sql = "INSERT INTO notes (title,description,content) 
-        VALUES ('$title','$description','$content')";
+    public function create($title, $content){
+        $sql = "INSERT INTO notes (title,content) 
+        VALUES ('$title','$content')";
 
         $this->db->query($sql);
         if($this->db->affected_rows() > 0){
@@ -18,7 +18,7 @@ Class Notes extends CI_Model {
         if($note_id != null){
             $this->db->where('notes_id', $note_id);
         }
-        $this->db->select('*');
+        $this->db->select("notes_id,title,SUBSTRING(content,1,30) as content,image");
       
        
         $query = $this->db->get();
@@ -31,9 +31,24 @@ Class Notes extends CI_Model {
     }
     
     
-    public function update($note_id,$title,$description, $content){
+    public function update($note_id,$title, $content){
         $sql = "UPDATE notes SET  "
-                . " title = '$title', description='$description', content = '$content'
+                . " title = '$title',  content = '$content'
+        WHERE notes_id=$note_id";
+         
+        $this->db->query($sql);
+        
+        if($this->db->affected_rows() > 0){
+            return 1;
+        }else{
+            
+            return 0;
+        }
+    }
+    
+    public function set_img($note_id,$img_name){
+         $sql = "UPDATE notes SET  "
+                . " image = '$img_name'
         WHERE notes_id=$note_id";
          
         $this->db->query($sql);
