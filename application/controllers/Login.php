@@ -11,36 +11,34 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-       // $this->load->library('facebook');
+        // $this->load->library('facebook');
         $data = array();
-        if($this->input->post('mail') != ''){
+        if ($this->input->post('mail') != '') {
             $result = $this->user->get_user_by_mail($this->input->post('mail'));
-            if(count($result)>0){
+            if (count($result) > 0) {
                 $new_pass = $this->generatePassword();
-                
-                if($this->sendPass($this->input->post('mail'),$new_pass)){
-                    $this->user->change_pass($result->id ,MD5($new_pass));
+
+                if ($this->sendPass($this->input->post('mail'), $new_pass)) {
+                    $this->user->change_pass($result->id, MD5($new_pass));
                     $data['msg'] = 'Enviamos su nueva contraseña a su casilla de correo!';
                     $data['operation_result'] = 'success';
-                    
-                }else{
+                } else {
                     $data['msg'] = 'Su contraseña no pudo ser regenerada!';
                     $data['operation_result'] = 'danger';
                 }
-                
-            }else{
+            } else {
                 $data['msg'] = 'El mail no es válido';
                 $data['operation_result'] = 'danger';
             }
         }
-        
-        
+
+
         $this->load->helper(array('form'));
         $this->load->view('header_login');
-        $this->load->view('login_view',$data);
-        $this->load->view('footer',array('js'=>array()));
+        $this->load->view('login_view', $data);
+        $this->load->view('footer', array('js' => array()));
     }
-    
+
     private function sendPass($mail, $new_pass) {
         $data = array();
 
@@ -51,9 +49,9 @@ class Login extends CI_Controller {
 //                   $this->email->cc('sbn.cabrera@gmail.com, jmanuoz@gmail.com');
 //                   $this->email->bcc('gimeleti@gmail.com, lucas.saposnik@gmail.com, hg.gagliardi@gmail.com');                   
 
-        $this->email->subject('Nueva contraseña' );
+        $this->email->subject('Nueva contraseña');
 
-        $this->email->message('Su nueva contraseña es:'. $new_pass);
+        $this->email->message('Su nueva contraseña es:' . $new_pass);
 
         try {
             $result = $this->email->send();
@@ -65,7 +63,6 @@ class Login extends CI_Controller {
         } catch (Exception $e) {
             return false;
         }
-        
     }
 
     protected function generatePassword($length = 8) {
@@ -97,7 +94,7 @@ class Login extends CI_Controller {
         } else {
             $userData = $this->session->userdata('logged_in');
             $remember = $this->input->post('remember_me');
-            if($remember == '1'){
+            if ($remember == '1') {
                 $this->session->set_userdata('remember_me', true);
             }
             if ($userData['profile'] == USER_PROFILE) {
@@ -123,7 +120,7 @@ class Login extends CI_Controller {
                     'id' => $row->id,
                     'username' => $row->username,
                     'profile' => $row->profile,
-                    'data'=>$row
+                    'data' => $row
                 );
                 $this->auth->login($row->id, $this->input->post('remember_me'));
                 $this->session->set_userdata('logged_in', $sess_array);
@@ -134,8 +131,6 @@ class Login extends CI_Controller {
             return false;
         }
     }
-    
-    
 
     public function logout() {
         $this->session->unset_userdata('logged_in');

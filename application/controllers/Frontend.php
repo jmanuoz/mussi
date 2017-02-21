@@ -10,13 +10,27 @@ class Frontend extends CI_Controller {
 
   public function get_posts($start=0, $limit=5){
       $this->load->model('posts', '', TRUE);
-      $result = $this->posts->get_posts($limit, $start);
-      foreach($result as &$post){
+      $this->load->model('notes', '', TRUE);
+      $posts= $this->posts->get_posts($limit, $start);
+      foreach($posts as &$post){
           $post->categories = $this->posts->get_categories($post->posts_id);
       }
-      echo json_encode($result);
+      
+      $notes = $this->notes->get_notes($limit, $start);
+      foreach($notes as &$note){
+          $note->categories = $this->notes->get_categories($post->notes_id);
+          $note->social_net = 6;
+      }
+      $resultado = array_merge($posts, $notes);
+      usort($resultado, array($this,"order_posts"));
+      echo json_encode($resultado);
 
   }
+  function order_posts($a, $b)
+    {
+        return (strtotime($a->date) < strtotime($a->date));
+    }
+
 
   public function get_followers(){
       $this->load->model('socialnets', '', TRUE);

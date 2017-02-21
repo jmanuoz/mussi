@@ -4,7 +4,7 @@
         <form name="" action="" method="POST" enctype="multipart/form-data">
             Titulo: <input type="text" name="title" id="title" value="<?php echo isset($note)?$note->title:'' ?>"/><br>
             <?php
-            if($note->image != ''):
+            if(isset($note) && $note->image != ''):
             ?>
             <img src="<?PHP echo site_url().'/assets/img_notes/'.$note->image;?>" width="400"/>
             <?php endif; ?>

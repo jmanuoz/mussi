@@ -11,7 +11,7 @@ Class Note extends CI_Controller {
         $this->load->model('categories', '', TRUE);
         if(isset($_POST['guardar'])){
             
-            $id_note = $this->notes->create($this->input->post('title'),$this->input->post('content'));
+            $id_note = $this->notes->create($this->input->post('title'),$this->input->post('content'),date('Y-m-d H:i:s'));
             if($this->input->post('categories') != ''){
                 foreach($this->input->post('categories') as $category){
                     $this->notes->set_category($id_note,$category);
