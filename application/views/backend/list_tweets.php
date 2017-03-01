@@ -54,6 +54,88 @@
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
+
+      <!-- BEGIN PAGE BAR -->
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <a href="">Home</a>
+            <i class="fa fa-circle"></i>
+          </li>
+          <li>
+            <span>Twitter</span>
+          </li>
+        </ul>
+        <div class="page-toolbar">
+          <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
+            <i class="icon-calendar"></i>&nbsp;
+            <span class="thin uppercase hidden-xs"></span>&nbsp;
+            <i class="fa fa-angle-down"></i>
+          </div>
+        </div>
+      </div>
+      <!-- END PAGE BAR -->
+      <!-- BEGIN PAGE TITLE-->
+      <h1 class="page-title"> Listado de Twitts
+        <small>Acá podes ver <b>todos</b> los twitts publicados por Juan Patricio Mussi</small>
+      </h1>
+      <!-- END PAGE TITLE-->
+
+      <!-- BEGIN SAMPLE TABLE PORTLET-->
+      <div class="portlet">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa fa-twitter"></i>Twitts </div>
+            <div class="tools">
+              <a href="javascript:;" class="reload"> </a>
+              <a href="javascript:;" class="remove"> </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="table-scrollable">
+              <table class="table table-striped table-bordered table-advance table-hover">
+                <thead>
+                  <tr>
+                    <th style="background-color: transparent; border: none!important;"></th>
+                    <th>
+                      Estado
+                    </th>
+                    <th>
+                      <i class="fa fa-clock"></i> Fecha </th>
+                      <th class="hidden-xs">
+                        <i class="fa fa-user"></i> Contenido </th>
+                      <th>
+                        Categorías
+                      </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($tweets as $tweet): ?>
+                        <tr>
+                          <td class="highlight" style="text-align: center; padding-left: 0; padding-right: 0;">
+                            <i class="fa fa-facebook"></i>
+                          </td>
+                          <td>Publicado</td>
+                          <td>
+                            19/02/2017 20:30h
+                          </td>
+                          <td class="hidden-xs"> Contenido de post de fb</td>
+                          <td>
+                            Categorías
+                          </td>
+                          <td>
+                            <a href="javascript:;" style="border-color: #36c6d3; color: #36c6d3;" class="btn btn-outline btn-circle btn-sm purple">
+                              <i class="fa fa-upload"></i> Publicar </a>
+                            </td>
+                          </tr>
+                          <?php endforeach; ?>
+                          </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END SAMPLE TABLE PORTLET-->
+
         <form name="form" method="POST" action="">
 
           <input type="submit" name="guardar" value="Guardar" class="btn btn-guardar btn-success" />
@@ -61,7 +143,7 @@
         <input type="hidden" name="social_net" id="social_net" value="<?php echo $social_net?>" />
 
         <h1>Lista de Tweets</h1>
-        
+
         <?php foreach ($tweets as $tweet): ?>
         <div class="box">
 
@@ -73,6 +155,8 @@
               <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked "':'';?>>
 
             <?php }else{ ?>
+
+              <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked "':'';?>>
 
               <button type="button" id="btn-<?= $tweet->post_id; ?>" class="btn btn-success">Subido</button>
 

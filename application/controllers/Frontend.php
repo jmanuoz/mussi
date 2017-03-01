@@ -1,4 +1,7 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(0);
 
@@ -15,7 +18,7 @@ class Frontend extends CI_Controller {
       foreach($posts as &$post){
           $post->categories = $this->posts->get_categories($post->posts_id);
       }
-      
+
       $notes = $this->notes->get_notes($limit, $start);
       foreach($notes as &$note){
           $note->categories = $this->notes->get_categories($post->notes_id);

@@ -22,7 +22,6 @@ class Backend extends CI_Controller {
 	{
             //$views = array('nav_backend_header');
             $data = array('css'=>array(),'js'=>array());
-		$this->get_view(array(),$data);
-                
-	}    
+						$this->get_view(array('/backend/dashboard'),$data);
+	}
 }

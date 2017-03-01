@@ -1,7 +1,6 @@
   </div>
 <div class="page-footer">
-            <div class="page-footer-inner"> 2016 &copy; <a href="http://agoraconsultores.com.ar/doxa" target="_blank">Doxa</a> es un producto de 
-                <a href="http://agoraconsultores.com.ar/" target="_blank">Ágora Consultores</a>.
+            <div class="page-footer-inner"> 2017 &copy; <a href="#">Juan Patricio Mussi</a>.
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
@@ -49,7 +48,7 @@
         <script src="<?php echo base_url('assets/'); ?>/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/'); ?>/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/'); ?>/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        
+
         <?php foreach($js as $file): ?>
         <script src="<?php echo base_url('assets/').$file; ?>" type="text/javascript"></script>
         <?php endforeach; ?>

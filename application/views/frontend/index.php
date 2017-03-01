@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<div class="container" id="app"></div>
+<div id="app"></div>
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -26,81 +26,5 @@
 <script src="<?php echo base_url('assets/');?>/js/bundle.js"></script>
 
 </body>
-<script type="text/javascript">
-$(document).ready(function(){
-
-  $('.materialboxed').materialbox();
-  $(".button-collapse").sideNav();
-
-  var widthHeader = $("header .card.card-main-header").parent().width();
-  $("header .card").width(widthHeader);
-
-  window.addEventListener('scroll', function(e){
-        var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-            shrinkOn = 10;
-        if (distanceY > shrinkOn) {
-          $("header .card").not(".menuFlotante").not(".mensajeFlotante").addClass("fixed");
-          // $("header .card-image").addClass("smaller");
-          $("header .foto-perfil").addClass("smaller");
-          $("header .nombre-perfil").addClass("smaller");
-        } else if(distanceY < 100 ) {
-              $("header .card").removeClass("fixed");
-              // $("header .card-image").removeClass("smaller");
-              $("header .foto-perfil").removeClass("smaller");
-              $("header .nombre-perfil").removeClass("smaller");
-        }
-  });
-
-});
-</script>
-<script>
-$(document).ready(function(){
-
-(function() {
-  'user strict';
-  var hello = document.getElementById('blur'),
-    windowHeight = window.innerHeight,
-    isScroll = false;
-  var altura = hello.offsetHeight;
-  var latestScroll = 0;
-  var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
-    window.requestAnimationFrame = requestAnimationFrame;
-
-    var init = function() {
-      window.addEventListener('scroll', function(){
-      latestScroll = window.scrollY;
-      checkScroll();
-    }, false);
-    }
-
-  var checkScroll = function() {
-    if(!isScroll) {
-      window.requestAnimationFrame(update);
-    }
-    isScroll = true;
-  }
-
-  var update = function() {
-    currentScroll = latestScroll;
-    isScroll = false;
-    var helloScroll = currentScroll * 2,
-      blurScroll = currentScroll * 10;
-
-      var valor = (blurScroll / windowHeight - .1).toFixed(2);
-      if(valor>=10){ valor=10; }
-      var alturaVa = altura - currentScroll;
-      if(alturaVa<=50){ alturaVa=50; } else if(currentScroll==0){ alturaVa}
-
-    hello.setAttribute("style","-webkit-filter:blur(" + valor + "px); transform:scale(1.1); height: "+ alturaVa +"px;");
-    // hello.setAttribute("style","scale:(1.1)");
-
-  }
-
-  init();
-})();
-});
-
-</script>
+<script src="<?php echo base_url('assets/') ?>/js/app.js"></script>
 </html>
