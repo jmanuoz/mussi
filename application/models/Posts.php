@@ -38,6 +38,35 @@ Class Posts extends CI_Model {
             return 0;
         }
     }
+    
+    public function remove_highlighted(){
+        $sql = "UPDATE posts SET  "
+                . "highlighted = 0";
+
+        $this->db->query($sql);
+
+        if($this->db->affected_rows() > 0){
+            return 1;
+        }else{
+
+            return 0;
+        }
+    }
+    
+    public function higlight_post($postId){
+       $sql = "UPDATE posts SET  "
+                . "highlighted = 1 "
+               . "WHERE posts_id=$postId ";
+
+        $this->db->query($sql);
+
+        if($this->db->affected_rows() > 0){
+            return 1;
+        }else{
+
+            return 0;
+        } 
+    }
 
    public function get_by_social_post_id($social_post_id, $social_net){
         $this->db->from('posts');
