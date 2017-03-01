@@ -36,7 +36,7 @@ Class Notes extends CI_Model {
             $this->db->where('notes_id', $note_id);
         }
         $this->db->limit($limit, $start);
-        $this->db->select("notes_id,title,SUBSTRING(content,1,30) as content,image");
+        $this->db->select("notes_id,title,SUBSTRING(content,1,30) as text,image");
 
 
         $query = $this->db->get();
