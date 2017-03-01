@@ -15,21 +15,21 @@
                                     </th>
                                     <th> Título </th>
                                     <th> Nota </th>
-                                    
-                                    
+
+
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($notes as $note): 
-                                    $content =strip_tags($note->content);
+                                <?php foreach ($notes as $note):
+                                    $content =strip_tags($note->text);
                                     ?>
                                     <tr class="odd gradeX">
                                         <td><a href="<?php echo site_url('Note/modify/' . $note->notes_id); ?>"><span class="glyphicon glyphicon-edit"></span></a> </td>
                                         <td> <?php echo $note->title ?> </td>
                                         <td><?php echo strlen($content)==30?$content.'...':$content;  ?></td>
-                                        
-                                        
+
+
 
                                     </tr>
                                 <?php endforeach; ?>
