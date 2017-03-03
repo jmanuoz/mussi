@@ -156,8 +156,9 @@ Class Posts extends CI_Model {
     public function get_posts($limit, $start){
         $this->db->from('posts');
         $this->db->select('*');
+        $this->db->order_by("date", "desc");
         $this->db->limit($limit, $start);
-
+        
         $query = $this->db->get();
 
         if ($query->num_rows() > 0){

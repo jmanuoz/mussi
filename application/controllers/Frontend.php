@@ -25,13 +25,15 @@ class Frontend extends CI_Controller {
           $note->social_net = 6;
       }
       $resultado = array_merge($posts, $notes);
+      
       usort($resultado, array($this,"order_posts"));
+      
       echo json_encode($resultado);
 
   }
   function order_posts($a, $b)
-    {
-        return (strtotime($a->date) < strtotime($a->date));
+    {      
+        return (strtotime($a->date) > strtotime($b->date)) ? -1 : 1;
     }
 
 
@@ -53,6 +55,7 @@ class Frontend extends CI_Controller {
 
         $items = $events_past['modelData']['items'];
         $lastEvent = array();
+        $lastEvent[] = array_pop($items);
         $lastEvent[] = array_pop($items);
         $events = array_merge($lastEvent,$events_future['modelData']['items']);
         $response->status = true;
