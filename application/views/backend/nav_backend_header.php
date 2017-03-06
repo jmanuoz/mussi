@@ -61,7 +61,7 @@
                                 <li>
                                     <a href="<?php echo site_url('Notifications/index') ?>">
                                         <i class="icon-envelope-open"></i> Notificaciones
-                                        <span class="badge badge-danger"> </span>
+                                        <span class="badge badge-danger"><?php echo count($notifications)?> </span>
                                     </a>
                                 </li>
                                 <li class="divider"> </li>

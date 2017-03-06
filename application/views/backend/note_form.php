@@ -28,7 +28,7 @@
             </select><br>
             Contenido:
             <textarea name ="content" id="editor">
-                        <?php echo isset($note)?$note->content:'' ?>
+                        <?php echo isset($note)?$note->text:'' ?>
             </textarea>
             <input type="submit" name="guardar" Value="Guardar"/>
         </form>
