@@ -1,7 +1,54 @@
 $(document).ready(function(){
 
+  var materialBox = function(){
+    $('.materialboxed').materialbox();
+  }
+  setTimeout(
+    materialBox,
+    2000
+  );
+
+  $('.timeline').on('click', '.dropdown-button', function(){
+    event.preventDefault();
+    $(this).next().slideToggle();
+  })
+
+  window.addEventListener('scroll', function(){
+    latestScroll = window.scrollY;
+
+    if (latestScroll >= 1000) {
+      var widthContainer = $('#app .container').width();
+
+      $('.affix').css('width', ((widthContainer * 33.3333333333) / 100 ) + 10) ;
+      $('.affix').addClass('sidebar-fixed');
+
+    } else {
+
+      $('.affix').css('width', '33.3333333333%');
+      $('.affix').removeClass('sidebar-fixed');
+
+    }
+  }, false);
+
+
+
+  $(".btn-map").click(function(){
+
+    $(".mapContainer").css('visibility', 'visible');
+    $(window).scrollTop(0);
+
+  });
+
+  $(".mapContainer .btnClose").click(function(){
+    $(".mapContainer").css('visibility', 'hidden');
+  });
+
+  $('select').material_select();
+
   $("#mobile-search-logo").click(function(){
     $("#head-mobile .searchBox").css("display", "block");
+    $("#head-mobile").css("overflow", "visible");
+    $("#head-mobile").css("transform", "scale(1)");
     $("#search-input-mobile").focus();
   });
   $("#close-mobile-search-btn").click(function(){
@@ -10,9 +57,10 @@ $(document).ready(function(){
   });
 
   $("#btn-buscar").click(function(){
-    $(".timeline .searchBox").css("display", "block");
+    // $(".timeline .searchBox").css("display", "block");
     $("#search-input-timeline").focus();
   });
+
   $("#close-timeline-search-btn").click(function(){
     $(".timeline .searchBox").css("display", "none");
     $("#search-input-timeline").val('');
@@ -24,10 +72,15 @@ $(document).ready(function(){
       edge: 'left'
     }
   );
+  //
+  // $("#btn-nav-map").sideNav({
+  //     closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+  //     edge: 'left'
+  //   }
+  // );
 
   $('#modal1').modal();
 
-  $('.materialboxed').materialbox();
 
 
   (function() {
