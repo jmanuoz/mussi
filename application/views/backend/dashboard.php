@@ -1,3 +1,4 @@
+<?php die(json_decode($followers)); ?>
       <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">

@@ -20,7 +20,10 @@ class Backend extends CI_Controller {
 	 */
 	public function index()
 	{
-  	$data = array('css'=>array(),'js'=>array());
+	
+
+  	$data = array('css'=>array(),'js'=>array(), 'followers' => $followers);
+
 		$this->get_view(array('/backend/dashboard'), $data);
 	}
 }
