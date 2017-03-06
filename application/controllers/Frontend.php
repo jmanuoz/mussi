@@ -55,8 +55,15 @@ class Frontend extends CI_Controller {
 
         $items = $events_past['modelData']['items'];
         $lastEvent = array();
-        $lastEvent[] = array_pop($items);
-        $lastEvent[] = array_pop($items);
+        $lastEvent1 = array_pop($items);
+        if($lastEvent1 != null){
+            $lastEvent[] = $lastEvent1;
+            $lastEvent2 = array_pop($items);
+            if($lastEvent2 != null){
+                $lastEvent[] = $lastEvent2;
+            }
+        }
+        
         $events = array_merge($lastEvent,$events_future['modelData']['items']);
         $response->status = true;
         $jsonEvents = array();
