@@ -59,7 +59,7 @@
                             <ul class="dropdown-menu dropdown-menu-default">
                                
                                 <li>
-                                    <a href="<?php echo site_url('Notificaciones/ver_admin') ?>">
+                                    <a href="<?php echo site_url('Notifications/index') ?>">
                                         <i class="icon-envelope-open"></i> Notificaciones
                                         <span class="badge badge-danger"> </span>
                                     </a>
@@ -169,7 +169,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo site_url('Notification/index');?>" class="nav-link nav-toggle">
+                            <a href="<?php echo site_url('Notifications/index');?>" class="nav-link nav-toggle">
                                 <i class="icon-bell"></i>
                                 <span class="title">Notificaciones</span>
                                 <span class="selected"></span>

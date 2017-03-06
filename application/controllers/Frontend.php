@@ -104,6 +104,23 @@ class Frontend extends CI_Controller {
       }
       echo json_encode($response);
   }
+  
+  public function set_post_higlighted($postId){
+      $this->load->model('posts', '', TRUE);
+      $response = new stdClass();
+      $success = $this->posts->remove_highlighted();
+      $success = $this->posts->higlight_post($postId);
+      if($success){
+          $response->status = 1;              
+          $response->message = 'Se destacó exitosamente';
+          echo json_encode($response);
+          return 0;
+      }
+      $response->status = 0;              
+      $response->message = 'No se pudo destacar';
+      echo json_encode($response);
+      return 0;
+  }
 
 }
 
