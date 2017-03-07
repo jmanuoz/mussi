@@ -70,7 +70,7 @@
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="<?php echo base_url('assets/');?>/metronic/global/scripts/app.min.js" type="text/javascript"></script>
-       <script src="<?php echo base_url('assets/');?>/metronic/js/nav_backend_header.js" type="text/javascript"></script>
+       <script src="<?php echo base_url('assets/');?>/js/nav_backend_header.js" type="text/javascript"></script>
 
        <!-- BEGIN PAGE LEVEL SCRIPTS -->
        <script src="<?php echo base_url('assets/');?>/metronic/pages/scripts/dashboard.min.js" type="text/javascript"></script>
