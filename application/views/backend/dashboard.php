@@ -130,8 +130,10 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <?php foreach($posts as $post): ?>
-                                      <?php if ($post->social_net != 5): ?>
+                                    <?php foreach($posts as $post): 
+                                       
+                                        ?>
+                                      <?php if ($post->social_net != 5 && $post->social_net != 6):  ?>
                                     <tr>
                                       <td class="highlight redS" style="text-align: center; padding-left: 0; padding-right: 0;">
                                         <?php
@@ -153,28 +155,31 @@
                                             default:
                                               break;
                                           }
-
+                                          
                                         ?>
                                       </td>
                                       <td class="highlight">
                                         <?= $post->text; ?>
                                       </td>
                                       <td class="hidden-xs">
-                                        <?php $categories = $post->categories; ?>
-                                        <?php if (sizeof($categories)>0){ ?>
-                                          <select name="category-<?php echo $post->post_id?>[]" id="category-<?php echo $post->post_id?>" class="js-example-basic-multiple" multiple="multiple">
+                                          <select name="category-<?php echo $post->posts_id?>[]" id="category-<?php echo $post->posts_id?>" 
+                                                  class="js-example-basic-multiple" multiple="multiple" onchange="updateCategories(<?php echo $post->posts_id?>)">
                                            <?php foreach($categories as $category):?>
-                                               <option value="<?php echo $category->category_id ?>"
-                                                   <?php echo in_array(array('category_id'=>$category->category_id), $post->categories)?'SELECTED':''?>>
-                                                   <?php echo $category->category_name ?></option>
+                                               <option value="<?php echo $category->categories_id ?>"
+                                                   <?php 
+                                                   $categorystd = new stdClass();
+                                                   $categorystd->category_id = $category->categories_id;
+                                                    $categorystd->category_name = $category->name;
+                                                   echo in_array($categorystd, $post->categories)?'SELECTED':''?>>
+                                                   <?php echo $category->name ?></option>
                                            <?php endforeach; ?>
 
                                           </select>
-                                          <?php } ?>
+                                          
                                       </td>
                                       <td><?= ($post->date == '') ? $post->social_net : $post->date; ?></td>
                                       <td>
-                                        <a class="publish waves-effect waves-light btn">Eliminar</a>
+                                        <a class="publish waves-effect waves-light btn" onclick="quitar_post('<?php echo $post->social_post_id?>','<?php echo $post->social_net?>');">Eliminar</a>
 
                                       </tr>
                                     <?php endif; ?>
