@@ -17,7 +17,7 @@ Class Messages_model extends CI_Model {
         $this->db->from('messages');
         $this->db->where('reply_to', 0);
         $this->db->select('*');
-
+        $this->db->order_by('date','desc');
 
         $query = $this->db->get();
 
