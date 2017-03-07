@@ -32,7 +32,24 @@
                                     <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
                                        <?php foreach($notifications as $notification): ?>
                                             <li>
-                                            <a href="javascript:;">
+                                            <a href="<?php 
+                                            switch($notification->notifications_type_id){
+                                                case Notifications_model::NEW_MESSAGE:
+                                                    echo site_url().'Messages/index/';
+                                                    break;
+                                                case Notifications_model::NEW_TWITTER_POSTS:
+                                                    echo site_url().'Redes/twitter';
+                                                    break;
+                                                case Notifications_model::NEW_FB_POSTS:
+                                                    echo site_url().'Redes/fb';
+                                                    break;
+                                                case Notifications_model::NEW_INSTA_POSTS:
+                                                    echo site_url().'Redes/instagram';
+                                                    break;
+                                                case Notifications_model::NEW_YOUTUBE_POSTS:
+                                                    echo site_url().'Redes/youtube';
+                                                    break;
+                                            }?>">
                                                 <span class="time">Ahora</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-success">
