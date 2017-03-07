@@ -33,7 +33,7 @@ Class Notes extends CI_Model {
 
     public function get_notes($limit, $start, $note_id=null){
         $this->db->from('notes');
-        if($note_id != null){
+        if(isset($note_id)){
             $this->db->where('notes_id', $note_id);
         }
         $this->db->limit($limit, $start);
