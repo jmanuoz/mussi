@@ -167,10 +167,44 @@ class CI_Controller {
             return $userData['data']->id;
         }
 
-				public function get_followers(){
+				public function get_followers($doEcho=true){
 			      $this->load->model('socialnets', '', TRUE);
 			      $result = $this->socialnets->get_followers();
-			      echo json_encode($result);
+						if($doEcho){
+							echo json_encode($result);
+						}else{
+							return $result;
+						}
+
 			  }
+				public function get_posts($doEcho=true, $start=0, $limit=5){
+			      $this->load->model('posts', '', TRUE);
+			      $this->load->model('notes', '', TRUE);
+			      $posts= $this->posts->get_posts($limit, $start);
+			      foreach($posts as &$post){
+			          $post->categories = $this->posts->get_categories($post->posts_id);
+			      }
+
+			      $notes = $this->notes->get_notes($limit, $start);
+			      foreach($notes as &$note){
+			          $note->categories = $this->notes->get_categories($note->notes_id);
+			          $note->social_net = 6;
+			      }
+			      $resultado = array_merge($posts, $notes);
+
+			      usort($resultado, array($this, "order_posts"));
+
+						if($doEcho){
+							echo json_encode($resultado);
+						}else{
+							return $resultado;
+						}
+
+			  }
+
+			  function order_posts($a, $b)
+			    {
+			        return (strtotime($a->date) > strtotime($b->date)) ? -1 : 1;
+			    }
 
 }

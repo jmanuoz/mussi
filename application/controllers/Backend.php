@@ -20,9 +20,13 @@ class Backend extends CI_Controller {
 	 */
 	public function index()
 	{
-	
+		$followers = $this->get_followers(false);
+		$posts = $this->get_posts(false);
 
-  	$data = array('css'=>array(),'js'=>array(), 'followers' => $followers);
+  	$data = array('css'=>array(),
+									'js'=>array(),
+									'followers' => $followers,
+									'posts' => $posts);
 
 		$this->get_view(array('/backend/dashboard'), $data);
 	}

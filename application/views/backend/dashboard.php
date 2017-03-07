@@ -1,4 +1,23 @@
-<?php die(json_decode($followers)); ?>
+<?php
+  foreach ($followers as $f) {
+
+    switch($f->name){
+      case 'Twitter':
+        $twFollowers = $f->followers;
+        break;
+      case 'Facebook':
+        $fbFollowers = $f->followers;
+        break;
+      case 'Instagram':
+        $inFollowers = $f->followers;
+        break;
+      case 'Youtube':
+        $yoFollowers = $f->followers;
+        break;
+    }
+  }
+
+?>
       <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
         <div class="page-content">
@@ -8,11 +27,11 @@
           <div class="page-bar">
             <ul class="page-breadcrumb">
               <li>
-                <a href="">Home</a>
+                <a href="">Inicio</a>
                 <i class="fa fa-circle"></i>
               </li>
               <li>
-                <span>Dashboard</span>
+                <span>Panel principal</span>
               </li>
             </ul>
             <div class="page-toolbar">
@@ -39,7 +58,7 @@
                 </div>
                 <div class="details">
                   <div class="number">
-                    <span data-counter="counterup" data-value="1349">0</span>
+                    <span data-counter="counterup" data-value="<?= $twFollowers; ?>">0</span>
                   </div>
                   <div class="desc"> nuevos Twitts </div>
                 </div>
@@ -52,8 +71,8 @@
                 </div>
                 <div class="details">
                   <div class="number">
-                    <span data-counter="counterup" data-value="12,5">0</span></div>
-                    <div class="desc"> nuevos videos de Youtube </div>
+                    <span data-counter="counterup" data-value="<?= $yoFollowers; ?>">0</span></div>
+                    <div class="desc"> suscriptores de Youtube </div>
                   </div>
                 </a>
               </div>
@@ -64,21 +83,21 @@
                   </div>
                   <div class="details">
                     <div class="number">
-                      <span data-counter="counterup" data-value="549">0</span>
+                      <span data-counter="counterup" data-value="<?= $fbFollowers; ?>">0</span>
                     </div>
-                    <div class="desc"> nuevos posteos </div>
+                    <div class="desc"> nuevos seguidores </div>
                   </div>
                 </a>
               </div>
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <a class="dashboard-stat dashboard-stat-v2 purple" style="background-color:#125688!important;" href="#">
                   <div class="visual">
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-instagram"></i>
                   </div>
                   <div class="details">
-                    <div class="number"> +
-                      <span data-counter="counterup" data-value="89"></span></div>
-                      <div class="desc"> nuevas fotos </div>
+                    <div class="number">
+                      <span data-counter="counterup" data-value="<?= $inFollowers; ?>"></span></div>
+                      <div class="desc"> nuevos seguidores </div>
                     </div>
                   </a>
                 </div>
@@ -105,29 +124,57 @@
                               <tr>
                                 <th style="background-color: transparent; border: none!important;"></th>
                                 <th>
-                                  <i class="fa fa-briefcase"></i> Company </th>
+                                  <i class="fa fa-file-text-o"></i> Contenido </th>
                                   <th class="hidden-xs">
-                                    <i class="fa fa-user"></i> Contact </th>
+                                    <i class="fa fa-tag"></i> Categorías </th>
                                     <th>
-                                      <i class="fa fa-shopping-cart"></i> Total </th>
+                                      <i class="fa fa-calendar-o"></i> Fecha / Hora </th>
                                       <th> </th>
                                     </tr>
                                   </thead>
                                   <tbody>
+                                    <?php foreach($posts as $post): ?>
                                     <tr>
                                       <td class="highlight" style="text-align: center; padding-left: 0; padding-right: 0;">
-                                        <i class="fa fa-facebook"></i>
+                                        <?php
+
+                                          switch ($post->social_net) {
+                                            case '1':
+                                              echo "<i class='fa fa-twitter' aria-hidden='true'></i>";
+                                              break;
+                                            case '2':
+                                              echo "<i class='fa fa-facebook' aria-hidden='true'></i>";
+                                              break;
+
+                                            default:
+                                              break;
+                                          }
+
+                                        ?>
                                       </td>
                                       <td class="highlight">
-                                        <i class="fa fa-facebook"></i>
+                                        <?= $post->text; ?>
                                       </td>
-                                      <td class="hidden-xs"> Mike Nilson </td>
-                                      <td> 2560.60$ </td>
+                                      <td class="hidden-xs">
+                                        <?php $categories = $post->categories; ?>
+                                        <?php if (sizeof($categories)>0){ ?>
+                                          <select name="category-<?php echo $post->post_id?>[]" id="category-<?php echo $post->post_id?>" class="js-example-basic-multiple" multiple="multiple">
+                                           <?php foreach($categories as $category):?>
+                                               <option value="<?php echo $category->category_id ?>"
+                                                   <?php echo in_array(array('category_id'=>$category->category_id), $post->categories)?'SELECTED':''?>>
+                                                   <?php echo $category->category_name ?></option>
+                                           <?php endforeach; ?>
+
+                                          </select>
+                                          <?php } ?>
+                                      </td>
+                                      <td><?= $post->date; ?></td>
                                       <td>
                                         <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
                                           <i class="fa fa-edit"></i> Edit </a>
                                         </td>
                                       </tr>
+                                    <?php endforeach; ?>
                                       </tbody>
                                         </table>
                                       </div>
