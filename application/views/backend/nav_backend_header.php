@@ -122,14 +122,14 @@
                             <!-- END SIDEBAR TOGGLER BUTTON -->
                         </li>
                         <li class="nav-item start active open">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                            <a href="<?php echo site_url('Backend/index');?>" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Administración</span>
                                 <span class="selected"></span>
                             </a>
                         </li>
                        <li class="nav-item">
-                            <a href="" class="nav-link nav-toggle">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-share"></i>
                                 <span class="title">Redes Sociales</span>
                                 <span class="arrow "></span>
@@ -159,7 +159,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="ayuda.html" class="nav-link nav-toggle">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-pencil"></i>
                                 <span class="title">Notas</span>
                                 <span class="arrow "></span>
