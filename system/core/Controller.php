@@ -173,7 +173,7 @@ class CI_Controller {
         }
     }
 
-    public function get_posts($doEcho = true, $start = 0, $limit = 5) {
+    public function posts($doEcho = true, $start = 0, $limit = 5) {
         $this->load->model('posts', '', TRUE);
         $this->load->model('notes', '', TRUE);
         $posts = $this->posts->get_posts($limit, $start);

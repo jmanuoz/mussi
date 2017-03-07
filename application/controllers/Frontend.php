@@ -12,11 +12,14 @@ class Frontend extends CI_Controller {
   }
 
   public function get_followers(){
-     $this->followers(false);
+     $this->followers(true);
+  }
+  public function get_posts($start = 0, $limit = 5){
+     $this->posts(true, $start, $limit);
   }
 
   public function get_calendar(){
-      
+
       $response = new stdClass();
       try{
         $this->load->library('google/calendar/google_calendar');
@@ -104,7 +107,7 @@ class Frontend extends CI_Controller {
       echo json_encode($response);
       return 0;
   }
-  
+
 }
 
 ?>
