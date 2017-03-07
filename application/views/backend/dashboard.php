@@ -1,4 +1,7 @@
 <?php
+
+// print_r($posts);
+// die();
   foreach ($followers as $f) {
 
     switch($f->name){
@@ -34,13 +37,7 @@
                 <span>Panel principal</span>
               </li>
             </ul>
-            <div class="page-toolbar">
-              <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
-                <i class="icon-calendar"></i>&nbsp;
-                <span class="thin uppercase hidden-xs"></span>&nbsp;
-                <i class="fa fa-angle-down"></i>
-              </div>
-            </div>
+
           </div>
           <!-- END PAGE BAR -->
           <!-- BEGIN PAGE TITLE-->
@@ -122,7 +119,7 @@
                           <table class="table table-striped table-bordered table-advance table-hover">
                             <thead>
                               <tr>
-                                <th style="background-color: transparent; border: none!important;"></th>
+                                <th class="red"></th>
                                 <th>
                                   <i class="fa fa-file-text-o"></i> Contenido </th>
                                   <th class="hidden-xs">
@@ -134,8 +131,9 @@
                                   </thead>
                                   <tbody>
                                     <?php foreach($posts as $post): ?>
+                                      <?php if ($post->social_net != 5): ?>
                                     <tr>
-                                      <td class="highlight" style="text-align: center; padding-left: 0; padding-right: 0;">
+                                      <td class="highlight redS" style="text-align: center; padding-left: 0; padding-right: 0;">
                                         <?php
 
                                           switch ($post->social_net) {
@@ -144,6 +142,12 @@
                                               break;
                                             case '2':
                                               echo "<i class='fa fa-facebook' aria-hidden='true'></i>";
+                                              break;
+                                            case '3':
+                                              echo "<i class='fa fa-instagram' aria-hidden='true'></i>";
+                                              break;
+                                            case '4':
+                                              echo "<i class='fa fa-youtube-square' aria-hidden='true'></i>";
                                               break;
 
                                             default:
@@ -168,12 +172,12 @@
                                           </select>
                                           <?php } ?>
                                       </td>
-                                      <td><?= $post->date; ?></td>
+                                      <td><?= ($post->date == '') ? $post->social_net : $post->date; ?></td>
                                       <td>
-                                        <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
-                                          <i class="fa fa-edit"></i> Edit </a>
-                                        </td>
+                                        <a class="publish waves-effect waves-light btn">Eliminar</a>
+
                                       </tr>
+                                    <?php endif; ?>
                                     <?php endforeach; ?>
                                       </tbody>
                                         </table>

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 
 Class Notes extends CI_Model {
     public function create($title, $content,$date){

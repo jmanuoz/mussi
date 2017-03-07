@@ -1,3 +1,27 @@
 .btn.btn-outline.purple:hover{
   background-color: transparent!important;
 }
+.select2-container--bootstrap{
+  width: 400px!important;
+}
+
+
+/* Dashboard table */
+.btn.publish{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 700;
+}
+.btn.publish:hover{
+  color: #FFF!important;
+}
+th.red{
+  background-color: transparent!important;
+  border: none!important;
+  width: 25px;
+}
+td.redS{
+  padding-top: 15px!important;
+}

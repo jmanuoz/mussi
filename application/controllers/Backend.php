@@ -23,8 +23,8 @@ class Backend extends CI_Controller {
 		$followers = $this->followers(false);
 		$posts = $this->posts(false);
 
-                $data = array('css'=>array(),
-                                'js'=>array(),
+                $data = array(	'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),
+																'css'=>array(),
                                 'followers' => $followers,
                                 'posts' => $posts);
 
