@@ -12,10 +12,10 @@ class Frontend extends CI_Controller {
   }
 
   public function get_followers(){
-     $this->followers(false);
+     $this->followers(true);
   }
-  public function get_posts(){
-     $this->posts(false);
+  public function get_posts($start = 0, $limit = 5){
+     $this->posts(true, $start, $limit);
   }
 
   public function get_calendar(){
