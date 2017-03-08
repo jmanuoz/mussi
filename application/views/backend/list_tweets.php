@@ -52,12 +52,13 @@
       <!-- END PAGE TITLE-->
 
       <!-- BEGIN SAMPLE TABLE PORTLET-->
+      <form name="form" method="POST" action="">
       <div class="portlet">
         <div class="portlet-title">
           <div class="caption">
             <i class="fa fa-twitter"></i>Twitts </div>
             <div class="tools">
-              <form name="form" method="POST" action="">
+              
             
               <input type="submit" name="guardar" value="Guardar" class="btn btn-guardar btn-success" />
 
