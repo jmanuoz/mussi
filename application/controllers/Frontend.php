@@ -32,11 +32,13 @@ class Frontend extends CI_Controller {
         $items = $events_past['modelData']['items'];
         $lastEvent = array();
         $lastEvent1 = array_pop($items);
-        if($lastEvent1 != null){
-            $lastEvent[] = $lastEvent1;
+        if($lastEvent1 != null){            
             $lastEvent2 = array_pop($items);
             if($lastEvent2 != null){
                 $lastEvent[] = $lastEvent2;
+                $lastEvent[] = $lastEvent1;
+            }else{
+                $lastEvent[] = $lastEvent1;
             }
         }
 
