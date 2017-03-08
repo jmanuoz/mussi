@@ -181,7 +181,7 @@ class CI_Controller {
             $post->categories = $this->posts->get_categories($post->posts_id);
         }
 
-        $notes = $this->notes->get_notes($limit, $start);
+        $notes = $this->notes->get_full_notes($limit, $start);
         foreach ($notes as &$note) {
             $note->categories = $this->notes->get_categories($note->notes_id);
             $note->social_net = 6;

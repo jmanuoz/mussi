@@ -19,7 +19,7 @@ Class Notes extends CI_Model {
         if($note_id != null){
             $this->db->where('notes_id', $note_id);
         }
-        $this->db->select("notes_id,title,SUBSTRING(content,1,30) as text,image");
+        $this->db->select("notes_id,title,content as text,image");
 
 
         $query = $this->db->get();
@@ -38,6 +38,24 @@ Class Notes extends CI_Model {
         }
         $this->db->limit($limit, $start);
         $this->db->select("notes_id,title,SUBSTRING(content,1,30) as text,image,date");
+
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+    
+    public function get_full_notes($limit, $start, $note_id=null){
+        $this->db->from('notes');
+        if(isset($note_id)){
+            $this->db->where('notes_id', $note_id);
+        }
+        $this->db->limit($limit, $start);
+        $this->db->select("notes_id,title,content as text,image,date");
 
 
         $query = $this->db->get();

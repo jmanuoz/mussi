@@ -62,7 +62,7 @@ Class Note extends CI_Controller {
     }
     
     public function list_notes(){
-        $notes = $this->notes->get();
+        $notes = $this->notes->get_notes(0,5);
         $data = array('css'=>array('/js/select2/scss/select2.min.css'),'js'=>array('/js/select2/js/select2.min.js'),'notes'=>$notes);
         $this->get_view(array('/backend/list_notes'),$data);
     }
