@@ -22,6 +22,9 @@
     text-align: center;
     color: #26c281;
   }
+  td.media{
+    text-align: center;
+  }
 
 </style>
 <div class="page-content-wrapper">
@@ -54,6 +57,8 @@
           <div class="caption">
             <i class="fa fa-twitter"></i>Twitts </div>
             <div class="tools">
+              <form name="form" method="POST" action="">
+            
               <input type="submit" name="guardar" value="Guardar" class="btn btn-guardar btn-success" />
 
             <input type="hidden" name="social_net" id="social_net" value="<?php echo $social_net?>" />
@@ -64,8 +69,6 @@
           </div>
           <div class="portlet-body">
             <div class="table-scrollable">
-
-              <form name="form" method="POST" action="">
 
               <table class="table table-striped table-bordered table-advance table-hover">
                 <thead>
@@ -81,11 +84,14 @@
                     <th class="fecha">
                       <i class="fa fa-clock"></i> Fecha
                     </th>
-                      <th class="hidden-xs">
-                        <i class="fa fa-user"></i> Contenido </th>
-                      <th>
-                        Categorías
-                      </th>
+                    <th class="hidden-xs">
+                      <i class="fa fa-user"></i> Contenido </th>
+                    <th>
+                      Media
+                    </th>
+                    <th>
+                      Categorías
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,6 +135,21 @@
                           <td class="hidden-xs">
                             <?= $tweet->text; ?>
                           </td>
+                          <td class="media">
+                            <?php
+
+                                $media = ($tweet->media[0]);
+                                if ($media->type == 'photo'):
+                                  $m = "<img src='$media->src' width='200' height='140'/>";
+                                else:
+                                  $m = "<video width='200' height='140' controls>
+                                        <source src='$media->src' type='video/mp4'>
+                                        </video>";
+                                 endif;
+                              ?>
+
+                            <i data-content="<?= $m; ?>" data-original-title="Contenido media" data-container="body" data-trigger="hover" data-placement="top" data-html="true" aria-hidden="true" class="fa fa-file-image-o popovers" ></i>
+                          </td>
                           <td>
                             <select name="category-<?php echo $tweet->post_id?>[]" id="category-<?php echo $tweet->post_id?>" class="js-example-basic-multiple" multiple="multiple">
                                 <?php foreach($categories as $category):?>
@@ -152,79 +173,6 @@
                       </div>
                       <!-- END SAMPLE TABLE PORTLET-->
 
-        <form name="form" method="POST" action="">
 
-          <input type="submit" name="guardar" value="Guardar" class="btn btn-guardar btn-success" />
-
-        <input type="hidden" name="social_net" id="social_net" value="<?php echo $social_net?>" />
-
-        <h1>Lista de Tweets</h1>
-
-        <?php foreach ($tweets as $tweet): ?>
-        <div class="box">
-
-
-          <div class="fecha">
-
-            <?php if($tweet->saved == false){ ?>
-
-              <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked "':'';?>>
-
-            <?php }else{ ?>
-
-              <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked "':'';?>>
-
-              <button type="button" id="btn-<?= $tweet->post_id; ?>" class="btn btn-success">Subido</button>
-
-              <a class="btn btn-danger" id="remove_post-<?php echo $tweet->post_id?>" onclick="quitar_post('<?php echo $tweet->post_id?>'); javascript:document.getElementById('btn-<?= $tweet->post_id; ?>').remove();">remover</a>
-
-            <?php } ?>
-
-            <i aria-hidden="true" class="fa fa-calendar"></i>
-            <?php echo $tweet->date ?>
-
-          </div>
-
-
-            <div class="cat-text">Categorías:</div>
-            <select name="category-<?php echo $tweet->post_id?>[]" id="category-<?php echo $tweet->post_id?>" class="js-example-basic-multiple" multiple="multiple">
-                <?php foreach($categories as $category):?>
-                    <option value="<?php echo $category->categories_id ?>"
-                             <?php echo in_array(array('category_id'=>$category->categories_id), $tweet->categories)?'SELECTED':''?>>
-                        <?php echo $category->name ?></option>
-                <?php endforeach; ?>
-
-            </select>
-
-            <?php if ($tweet->posted_by != ''): ?>
-              <div class="user">
-               <b><i style="margin-right: 5px;" aria-hidden="true" class="fa fa-twitter"></i>Twiteado por:</b> <?php echo $tweet->posted_by ?>
-              </div>
-            <?php endif; ?>
-
-            <div class="text">
-              <?php echo $tweet->text ?>
-            </div>
-
-            <?php foreach ($tweet->media as $media):
-                if ($media->type == 'photo'):
-                    ?>
-                    <img src="<?php echo $media->src ?>" width="320" height="240"/>
-                <?php else: ?>
-                    <video width="320" height="240" controls>
-                        <source src="<?php echo $media->src ?>" type="video/mp4">
-
-                    </video>
-                <?php endif;
-                ?>
-
-                <?php endforeach; ?>
-        </div>
-
-        <?php endforeach; ?>
-
-        <input type="submit" name="guardar" value="Guardar" class="btn btn-guardar btn-success" />
-
-        </form>
     </div>
 </div>
