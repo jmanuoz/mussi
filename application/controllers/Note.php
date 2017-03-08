@@ -37,7 +37,9 @@ Class Note extends CI_Controller {
     public function modify($note_id){
         $this->load->model('categories', '', TRUE);
         if(isset($_POST['guardar'])){
-            $this->notes->update($note_id,$this->input->post('title'),$this->input->post('description'),$this->input->post('content'));
+            
+            $this->notes->update($note_id,$this->input->post('title'),$this->input->post('content'));
+            
             if($this->input->post('categories') != ''){
                 foreach($this->input->post('categories') as $category){
                     $this->notes->set_category($note_id,$category);

@@ -89,8 +89,8 @@ class Login extends CI_Controller {
             $views = array('login_view');
             $this->load->view('header_login');
             $this->load->view('login_view');
-
-            $this->load->view('footer');
+            
+            $this->load->view('backend/footer',array('js'=>array()));
         } else {
             $userData = $this->session->userdata('logged_in');
             $remember = $this->input->post('remember_me');

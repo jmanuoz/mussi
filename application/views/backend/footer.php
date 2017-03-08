@@ -69,11 +69,9 @@
         <!-- END THEME LAYOUT SCRIPTS -->
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
-<<<<<<< HEAD
+
         <script src="<?php echo base_url('assets/');?>/global/scripts/app.min.js" type="text/javascript"></script>
-=======
-        <script src="<?php echo base_url('assets/');?>/metronic/global/scripts/app.min.js" type="text/javascript"></script>
->>>>>>> e85871de30cefc35297f60aded14ce64b82d2526
+
        <script src="<?php echo base_url('assets/');?>/js/nav_backend_header.js" type="text/javascript"></script>
 
        <!-- BEGIN PAGE LEVEL SCRIPTS -->
