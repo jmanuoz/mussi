@@ -35,7 +35,9 @@
                                 <div class="portlet-body">
                                     <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
                                         <ul class="feeds">
-                                            <?php foreach($notifications as $notification): ?>
+                                            <?php foreach($notifications as $notification): 
+                                                if($notification->notifications_type_id != Notifications_model::NEW_MESSAGE):
+                                                ?>
                                             <li>
                                                 <div class="col1">
                                                     <div class="cont">
@@ -46,13 +48,36 @@
                                                         </div>
                                                         <div class="cont-col2">
                                                             <?php switch($notification->notifications_type_id){
-                                                                    default:?>
-                                                                        <div class="desc"> Hay nuevos posts en <a href="<?php echo site_url('Redes/twitter') ?>">twitter </a><span class="label label-sm label-danger "> Ver
+                                                                    case Notifications_model::NEW_TWITTER_POSTS :?>
+                                                                        <div class="desc"> Hay nuevos posts en <a href="<?php echo site_url('Redes/twitter') ?>">Twitter </a><span class="label label-sm label-danger "> Ver
                                                                                     <i class="fa fa-share"></i>
                                                                                 </span></a>
                                                                         </div>
-                                                                <?php
+                                                                    <?php
                                                                         break;
+                                                                    case Notifications_model::NEW_FB_POSTS :?>
+                                                                        <div class="desc"> Hay nuevos posts en <a href="<?php echo site_url('Redes/fb') ?>">Facebook </a><span class="label label-sm label-danger "> Ver
+                                                                                    <i class="fa fa-share"></i>
+                                                                                </span></a>
+                                                                        </div>
+                                                                    <?php
+                                                                        break;
+                                                                    case Notifications_model::NEW_INSTA_POSTS :?>
+                                                                        <div class="desc"> Hay nuevos posts en <a href="<?php echo site_url('Redes/instagram') ?>">Instagram </a><span class="label label-sm label-danger "> Ver
+                                                                                    <i class="fa fa-share"></i>
+                                                                                </span></a>
+                                                                        </div>
+                                                                    <?php
+                                                                        break;
+                                                                    case Notifications_model::NEW_YOUTUBE_POSTS :?>
+                                                                        <div class="desc"> Hay nuevos posts en <a href="<?php echo site_url('Redes/youtube') ?>">Youtube </a><span class="label label-sm label-danger "> Ver
+                                                                                    <i class="fa fa-share"></i>
+                                                                                </span></a>
+                                                                        </div>
+                                                                    <?php
+                                                                        break;
+                                                                   
+                                                                    
                                                                 }
                                                             ?>
                                                             
@@ -63,7 +88,9 @@
                                                     <div class="date"> <?php echo date('d/m/Y',strtotime($notification->date))?> </div>
                                                 </div>
                                             </li>
-                                            <?php endforeach; ?>
+                                            <?php 
+                                            endif;
+                                            endforeach; ?>
                                         </ul>
                                     </div>
                                     <div class="scroller-footer">
