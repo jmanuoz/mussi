@@ -20,14 +20,30 @@ class Backend extends CI_Controller {
 	 */
 	public function index()
 	{
-		$followers = $this->followers(false);
-		$posts = $this->posts(false);
+            $this->load->model('categories', '', TRUE);
+            $followers = $this->followers(false);
+            $posts = $this->posts(false);
+            $categories = $this->categories->get_categories();
+            
+            $data = array(	'js'=>array('/js/dashboard.js','/ckeditor/ckeditor.js'),
+                                                                                                                            'css'=>array(),
+                            'followers' => $followers,
+                            'posts' => $posts,
+                    'categories'=>$categories);
 
-                $data = array(	'js'=>array('/js/list_posts.js','/ckeditor/ckeditor.js'),
-																'css'=>array(),
-                                'followers' => $followers,
-                                'posts' => $posts);
-
-		$this->get_view(array('/backend/dashboard'), $data);
+            $this->get_view(array('/backend/dashboard'), $data);
 	}
+        
+        public function update_categories($post_id){
+            $this->load->model('posts', '', TRUE);
+            $this->posts->delete_categories($post_id);
+            foreach($this->input->post('categories') as $category){
+                $this->posts->set_category($post_id,$category);
+            }
+            $result = new stdClass();
+            $result->success = true;
+            echo json_encode($result);
+        }
+        
+       
 }

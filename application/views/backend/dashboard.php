@@ -1,7 +1,5 @@
   <?php
 
-  // print_r($posts);
-  // die();
     foreach ($followers as $f) {
 
       switch($f->name){
@@ -113,7 +111,6 @@
                             <a href="javascript:;" class="reload"> </a>
                             <a href="javascript:;" class="remove"> </a>
                           </div>
-                        </div>
                         <div class="portlet-body">
                           <div class="table-scrollable">
                             <table class="table table-striped table-bordered table-advance table-hover">
@@ -134,7 +131,31 @@
                                         <?php if ($post->social_net != 5): ?>
                                       <tr>
                                         <td class="highlight redS" style="text-align: center; padding-left: 0; padding-right: 0;">
-                                          <?php
+
+                      </div>
+                      <div class="portlet-body">
+                        <div class="table-scrollable">
+                          <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                              <tr>
+                                <th class="red"></th>
+                                <th>
+                                  <i class="fa fa-file-text-o"></i> Contenido </th>
+                                  <th class="hidden-xs">
+                                    <i class="fa fa-tag"></i> Categorías </th>
+                                    <th>
+                                      <i class="fa fa-calendar-o"></i> Fecha / Hora </th>
+                                      <th> </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php foreach($posts as $post):
+
+                                        ?>
+                                      <?php if ($post->social_net != 5 && $post->social_net != 6):  ?>
+                                    <tr>
+                                      <td class="highlight redS" style="text-align: center; padding-left: 0; padding-right: 0;">
+                                        <?php
 
                                             switch ($post->social_net) {
                                               case '1':
@@ -175,6 +196,30 @@
                                         <td><?= ($post->date == '') ? $post->social_net : $post->date; ?></td>
                                         <td>
                                           <a class="publish waves-effect waves-light btn">Eliminar</a>
+
+                                      </td>
+                                      <td class="highlight">
+                                        <?= $post->text; ?>
+                                      </td>
+                                      <td class="hidden-xs">
+                                          <select name="category-<?php echo $post->posts_id?>[]" id="category-<?php echo $post->posts_id?>"
+                                                  class="js-example-basic-multiple" multiple="multiple" onchange="updateCategories(<?php echo $post->posts_id?>)">
+                                           <?php foreach($categories as $category):?>
+                                               <option value="<?php echo $category->categories_id ?>"
+                                                   <?php
+                                                   $categorystd = new stdClass();
+                                                   $categorystd->category_id = $category->categories_id;
+                                                    $categorystd->category_name = $category->name;
+                                                   echo in_array($categorystd, $post->categories)?'SELECTED':''?>>
+                                                   <?php echo $category->name ?></option>
+                                           <?php endforeach; ?>
+
+                                          </select>
+
+                                      </td>
+                                      <td><?= ($post->date == '') ? $post->social_net : $post->date; ?></td>
+                                      <td>
+                                        <a class="publish waves-effect waves-light btn" onclick="quitar_post('<?php echo $post->social_post_id?>','<?php echo $post->social_net?>');">Eliminar</a>
 
                                         </tr>
                                       <?php endif; ?>
