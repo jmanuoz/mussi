@@ -13,11 +13,13 @@
   th.redS{
     background-color: transparent!important;
     border: none!important;
-    width: 30px!important;
+    width: 3%!important;
   }
-  th.estado{ width: 20px; }
+  th.estado{ width: 5%; text-align: center;}
   th.fecha { width: 175px; }
-  th.chk{ width: 20px; }
+  th.contenido { width: 50%; }
+  th.media { width: 3%; }
+  th.chk{ width: 3%; text-align: center; }
   td.estado{
     text-align: center;
     color: #26c281;
@@ -58,8 +60,7 @@
           <div class="caption">
             <i class="fa fa-twitter"></i>Twitts </div>
             <div class="tools">
-              
-            
+
               <input type="submit" name="guardar" value="Guardar" class="btn btn-guardar btn-success" />
 
             <input type="hidden" name="social_net" id="social_net" value="<?php echo $social_net?>" />
@@ -85,9 +86,9 @@
                     <th class="fecha">
                       <i class="fa fa-clock"></i> Fecha
                     </th>
-                    <th class="hidden-xs">
+                    <th class="contenido">
                       <i class="fa fa-user"></i> Contenido </th>
-                    <th>
+                    <th class="media">
                       Media
                     </th>
                     <th>
@@ -111,9 +112,6 @@
 
                               <input type="checkbox" name="tweets[]" id="checkbox-<?php echo $tweet->post_id?>" value='<?php echo json_encode($tweet)?>' <?php echo ($tweet->saved == true)?'checked "':'';?>>
 
-                              <button type="button" id="btn-<?= $tweet->post_id; ?>" class="btn btn-success">Subido</button>
-
-                              <a class="btn btn-danger" id="remove_post-<?php echo $tweet->post_id?>" onclick="quitar_post('<?php echo $tweet->post_id?>'); javascript:document.getElementById('btn-<?= $tweet->post_id; ?>').remove();">remover</a>
 
                             <?php } ?>
 
@@ -123,7 +121,7 @@
                             <?php if($tweet->saved == false){ ?>
                               <i data-container="body" data-placement="top" data-original-title="No publicado" style="color:red" class="tooltips fa fa-close" aria-hidden="true"></i>
                             <?php }else{ ?>
-                              <i data-container="body" data-placement="top" data-original-title="No publicado"  class="fa fa-check-square-o tooltips" aria-hidden="true"></i>
+                              <i data-container="body" data-placement="top" data-original-title="Publicado"  class="fa fa-check-square-o tooltips" aria-hidden="true"></i>
                             <?php } ?>
                           <td>
                             <?php
