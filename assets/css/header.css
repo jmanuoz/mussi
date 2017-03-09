@@ -1,0 +1,422 @@
+header#head-large .no-margin{
+  overflow: hidden;
+  margin: 0!important;
+}
+header#head-large .margin-20{
+  margin: 20px 0!important;
+}
+
+header#head-large .card-image{
+  height: 250px;
+  background-image: url('../../assets/img/mussi-portada.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+}
+header#head-large .foto-perfil{
+  transition: .2s ease all;
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  border-radius: 50%;
+  background-image: url('../../assets/img/mussi-perfil.jpg');
+  background-size: cover;
+  height: 95px;
+  width: 95px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+header#head-large .nombre-perfil{
+  transition: .2s ease all;
+  left: 135px!important;
+  position: absolute;
+  padding: 0!important;
+  font-family: 'Roboto', sans-serif;
+  color: #FFF;
+  font-weight: 700!important;
+  bottom: 50px;
+  font-size: 32px!important;
+}
+header#head-large .card .card-content{
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 140px;
+  font-size: 21px;
+  color: #9e9e9e;
+  min-height: 50px;
+}
+
+header#head-large .card .card-content .social-item{
+  margin-right: 20px;
+  float: left;
+}
+header#head-large .card .card-content .social-item > a{
+  color: #9e9e9e;
+}
+header#head-large .card .card-content .social-item:hover,
+header#head-large .card .card-content .social-item:hover > a{
+  color: #1e88e5!important;
+}
+header#head-large .card .card-content .social-item > a > span{
+  margin-left: 5px!important;
+  font-weight: 300;
+}
+
+/******
+  *****
+      Efecto de collapse en menú
+*******
+*******/
+
+header#head-large{
+  height: 320px;
+  position: relative;
+}
+header#head-large.smaller{
+  height: 120px;
+}
+header#head-large .card{
+  /*transition: .9s ease all;*/
+  position: relative;
+  z-index: 999!important;
+}
+header#head-large .card-main-header{
+  z-index: 999!important;
+}
+header#head-large .card-main-header > div:first-child{
+  overflow: hidden;
+}
+header#head-large .card-image{
+  /*-webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  -ms-transition: height 0.3s;
+  -o-transition: height 0.3s;
+  transition: height 0.3s;*/
+  overflow: hidden;
+}
+header#head-large .foto-perfil.smaller{
+  height: 75px!important;
+  width: 75px!important;
+  left: 35px!important;
+}
+header#head-large .nombre-perfil.smaller{
+  bottom: 50px;
+  font-size: 24px!important;
+}
+header#head-large .card.fixed{
+  border-radius: 0px!important;
+  margin-top: -20px!important;
+  position: fixed;
+}
+header#head-large a.btn-menu{
+  position: absolute;
+  bottom: 20px;
+}
+header#head-large a.btn-menu#btn-escribir{
+  right: 170px;
+  background-color: #1E88E5!important;
+}
+header#head-large a.btn-menu#btn-buscar{
+  background-color: #1565C0!important;
+  right: 96px;
+}
+header#head-large a.btn-menu#btn-menu{
+  right: 20px;
+  background-color: #0D47A1!important;
+}
+
+header#head-large .menuFlotante{
+  position: fixed;
+  /*top: 10px;*/
+  z-index: 9999;
+  box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.3);
+}
+header#head-large .menuFlotante > .row{
+  margin-bottom: 0!important;
+}
+header#head-large .menuFlotante h4{
+  padding:20px 0 0 20px;
+  margin: 0;
+  font-weight: 600;
+}
+header#head-large .menuFlotante i.btnCerrar{
+  top: 20px;
+  right: 20px;
+  font-size: 2em;
+  cursor: pointer;
+  position: absolute;
+}
+header#head-large .menuFlotante .menuVertical ul li{
+  margin: 10px 0;
+  width:100%;
+  float: left;
+  color: #616161;
+}
+header#head-large .menuFlotante .menuVertical ul li span{
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: .3s ease all;
+  float: left;
+  cursor: pointer;
+}
+header#head-large .menuFlotante .menuVertical ul li span:hover{
+  color: #4fc3f7;
+}
+header#head-large .menuFlotante .menuVertical ul li i{
+  margin-right: 40px;
+  float: left;
+}
+header#head-large .menuFlotante .menuVertical{
+  margin-left: 20px;
+}
+
+header#head-large .menuFlotante .seccionesMenu{
+  float: right;
+  margin: 20px 20px 0 0;
+}
+header#head-large .menuFlotante .seccionesMenu h5{
+  text-align: right;
+  font-weight: 900;
+  margin-bottom: 0px!important;
+}
+header#head-large .menuFlotante .seccionesMenu .seccionesMenuBox div{
+  float: right;
+  text-align:right;
+  min-width: 500px;
+}
+header#head-large .menuFlotante .seccionesMenu .seccionesMenuBox span{
+  color: #4fc3f7;
+  padding-left: 10px;
+  font-weight: 300;
+  font-size: 1.5em;
+  opacity: .85;
+  transition: .2s ease all;
+  cursor: pointer;
+  float: right;
+}
+header#head-large .menuFlotante .seccionesMenu .seccionesMenuBox span:hover{
+  opacity: 1;
+}
+
+header#head-large .menuFlotante .redesMenu{
+  float: right;
+  margin: 10px 20px 0 0;
+}
+header#head-large .menuFlotante .redesMenu ul{
+  float: right;
+}
+header#head-large .menuFlotante .redesMenu ul li{
+  float: left;
+  font-size: 1.2em;
+  padding-left: 60px;
+  color: #4fc3f7;
+}
+header#head-large .menuFlotante .redesMenu ul li i{
+  margin-right: 5px;
+}
+
+/****** Mensaje Flotante ******/
+
+#modal1{
+  z-index: 9999!important;
+  min-height: 450px;
+  max-height: 500px!important;
+  top: 150px;
+}
+#modal1 input:focus:not([readonly]),
+#modal1 textarea.materialize-textarea:focus:not([readonly]){
+  border-bottom: 1px solid #64b5f6!important;
+  box-shadow: 0 1px 0 0 #64b5f6!important;
+}
+#modal1 input:focus:not([readonly])+label,
+#modal1 textarea:focus+label,
+#modal1 .input-field .prefix.active{
+  color: #64b5f6!important;
+}
+#modal1 .msgAlert{
+  padding: 5px 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #4caf50;
+  text-align: center;
+  display: none;
+}
+
+header#head-large .mensajeFlotante{
+  position: relative;
+  min-height: 370px;
+  width: 100%;
+}
+header#head-large .mensajeFlotante h2{
+  text-align: center;
+  font-weight: 300;
+  margin: 5px 0;
+}
+header#head-large .mensajeFlotante h2 > i{
+  margin-right: 10px;
+}
+header#head-large .mensajeFlotante .btnBox{
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+header#head-large .mensajeFlotante .btnBox button{
+  width: 225px;
+  border: 0;
+  min-height: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #FFF;
+  opacity: .8;
+  transition: .2s ease all;
+}
+header#head-large .mensajeFlotante .btnBox button:hover{
+  opacity: 1;
+}
+header#head-large .mensajeFlotante .btnBox button.env{
+  background-color: #64b5f6;
+  margin-right: 20px;
+}
+header#head-large .mensajeFlotante .btnBox button.can{
+  background-color: #f44336;
+}
+
+
+/******
+  *****
+      Header mobile
+*******
+*******/
+
+@media(max-width:992px){
+  #note .container,
+  #app .container{
+    padding-top: 70px;
+  }
+}
+header#head-mobile{
+  border-bottom: 2px solid #dddddd;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  width: 100%;
+  min-height: 50px;
+  position: fixed;
+  z-index: 997;
+
+  overflow: hidden;
+  background-image: url("http://localhost/reactjs/assets/img/mussi-portada.jpg");
+  background-position: 50%;
+  transform: scale(1.1);
+  background-size: cover;
+}
+header#head-mobile > .bkg{
+  width: 100%;
+  background-size: cover;
+  min-height: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+}
+header#head-mobile .row:first-child{
+  margin: 0;
+}
+header#head-mobile > .container{
+  padding-top: 0!important;
+}
+header#head-mobile .logo-search,
+header#head-mobile .menu-home{
+  font-size: 32px;
+}
+header#head-mobile .menu-home > a,
+header#head-mobile .logo-search > a{
+  color: #FFF;
+}
+header#head-mobile .menu-home > a > i,
+header#head-mobile .logo-search > a > i{
+  text-shadow: -1px 0 15px #212121;
+}
+header#head-mobile .no-padding-left{
+  padding-left: 0!important;
+}
+header#head-mobile .no-padding-right{
+  padding-right: 0!important;
+}
+header#head-mobile h2{
+  font-size: 16px;
+  margin: 15px 0;
+  text-align: center;
+  color: #FFF;
+  font-weight: 700;
+  text-shadow: -1px 0 10px #212121;
+}
+header#head-mobile .logo-search{
+  text-align: right;
+  font-size: 24px;
+  padding: 6px 0;
+}
+
+header#head-mobile .searchBox{
+  z-index: 9999;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: none;
+  background-color: #f5f5f5;
+  animation-duration: .5s!important;
+}
+header#head-mobile .searchBox .close-btn{
+  padding-left: 10px;
+  padding-top: 5px;
+  font-size: 28px;
+  float: left;
+  cursor: pointer;
+}
+header#head-mobile .searchBox .close-btn > i{
+  border-right: 1px solid #616161;
+  padding-right: 20px;
+  color: #616161;
+}
+header#head-mobile .searchBox .search-input{
+  float: left;
+  margin-left: 15px;
+  width: 70%;
+}
+header#head-mobile .searchBox .search-input > input[type=text]{
+  float: left;
+  margin: 0;
+  padding: 3px 0;
+  border: 0;
+  font-size: 18px;
+  font-weight: 100;
+}
+header#head-mobile .searchBox .search-input > input[type=text]:focus{
+  box-shadow: none!important;
+  border-bottom: none!important;
+}
+header#head-mobile .searchBox .lupa-btn{
+  height: 100%;
+  font-size: 22px;
+  padding: 10px 0;
+  padding-right: 5px;
+  cursor: pointer;
+  float: right;
+}
+
+#slide-out{
+  z-index: 9999;
+}
+
+.side-nav{
+
+}
+.side-nav .userView .background{
+  background-size: cover;
+  background-position: 50%;
+  background-image: url("http://localhost/reactjs/assets/img/mussi-portada.jpg");
+}
+.side-nav .userView img.circle{
+  background-image: url("http://localhost/reactjs/assets/img/mussi-perfil.jpg");
+  background-size: cover;
+  background-position: 35%;
+}

@@ -1,0 +1,134 @@
+#nav-map{
+  z-index: 9999;
+}
+.mapContainer{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  z-index: 9999;
+
+  visibility: hidden;
+}
+.mapContainer .headMobile,
+.mapContainer .head{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFF!important;
+  /*min-height: 50px;*/
+  z-index: 9999;
+}
+.mapContainer .head > h2{
+  font-size: 23px;
+  margin: 12px 0 0 0;
+  color: #000;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+}
+.mapContainer .headMobile > h2{
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  width: 100%;
+  color: #000;
+  font-weight: 700;
+  float: left;
+}
+.mapContainer .head > i{
+  float: left;
+  font-size: 32px;
+  padding: 8px;
+  margin-left: 35px;
+}
+.mapContainer .head > h2 > span{
+  font-weight: 300;
+}
+.mapContainer .head > .btnClose{
+  float: right;
+  color: #000;
+  cursor: pointer;
+  height: 100%;
+  font-size: 26px;
+  padding-right:35px;
+}
+.mapContainer .headMobile > h2 > .btnClose{
+  float: right;
+  padding-right: 15px;
+  color: #000;
+  cursor: pointer;
+  height: 100%;
+  font-size: 26px;
+}
+.mapContainer .head > .btnClose > span{
+  height: 100%;
+  padding: 10px 15px;
+  float: left;
+  font-size: 18px;
+}
+.mapContainer .head > .btnClose > i{
+  padding-top: 12px;
+}
+.mapContainer .headMobile > h2 > .btnMenu{
+  float: left;
+  padding-left: 15px;
+  color: #FFF;
+  cursor: pointer;
+  height: 100%;
+  font-size: 26px;
+}
+.mapContainer .headMobile > h2 > .btnMenu > a{
+  color: #FFF;
+}
+.mapContainer .optionBox{
+  position: absolute;
+  height: 400px;
+  top: 100px;
+  left: 50px;
+  width: 350px;
+  background-color: #FFF!important;
+  z-index: 9999;
+  padding: 20px;
+  color: #000;
+}
+.mapContainer .optionBox > h2{
+  color: #000;
+  font-weight: 900;
+  font-size: 32px;
+  margin: 10px 0;
+}
+.mapContainer .optionBox > p{
+  font-size: 16px;
+  font-weight: 300;
+}
+.mapContainer .optionBox > .input-field{
+  margin: 15px 0;
+}
+.mapContainer .switchBox{
+  float: left;
+  width: 100%;
+}
+.mapContainer .switch{
+  margin: 10px 0;
+  width: 100%;
+  max-width: 150px;
+  float: left;
+}
+.mapContainer .switch span.lever{
+  float: right;
+  margin: 5px 0;
+}
+.mapContainer .switch label input[type=checkbox]:checked+.lever {
+  background-color: #03a9f4;
+}
+.mapContainer .switch label input[type=checkbox]:checked+.lever:after {
+  background-color: #0288d1;
+}
+.mapContainer .switch > label{
+  color: #000;
+  font-size: 18px;
+}

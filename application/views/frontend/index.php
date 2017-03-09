@@ -11,7 +11,19 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen" title="no title" charset="utf-8">
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/todo.css" media="screen" title="no title" charset="utf-8">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/general.css" media="screen" title="no title" charset="utf-8">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/header.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/bio.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/secciones.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/calendario.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/muni.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/map.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/nota.css" media="screen" title="no title" charset="utf-8">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/timeline.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/card-articulo.css" media="screen" title="no title" charset="utf-8">
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7dNJE7C3mPlWhcHpTGsh1QJNyjfVa5BY"></script>
 

@@ -1,0 +1,25 @@
+.card.articulo > .img-principal{
+  float: left;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  max-height: 700px;
+  overflow: hidden;
+}
+.card.articulo .img-principal img{
+  width: 100%;
+  position: relative;
+}
+.card.articulo .img-principal h2{
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  font-size: 2em;
+  color: #FFF;
+  font-weight: 700;
+  text-shadow: #2b2b2b .5px .5px;
+  margin-bottom: 20px;
+}
+.card.articulo .img-principal h2 > a{
+  color: #FFF;
+}

@@ -1,0 +1,27 @@
+.biografia{
+  font-weight: 300;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-top: 0;
+  float: left;
+  width: 100%;
+}
+.biografia .card-title{
+  font-weight: 700;
+}
+.biografia .card-content > p > span{
+  background-color: #65caf8;
+  padding: 1px 5px;
+  font-weight: 700;
+  opacity: .8;
+  transition: .5s ease all;
+  cursor: pointer;
+}
+.biografia .card-content > p > span:hover{
+  opacity: 1!important;
+}
+.biografia .card-content > p > span > i{
+  line-height: 1;
+  font-size: 12px;
+  margin: 2px 3px 0 0;
+}

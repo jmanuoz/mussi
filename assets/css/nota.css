@@ -1,0 +1,25 @@
+.nota{
+  float: left;
+  width: 100%;
+}
+.nota > .card-image{
+  background-image: url('../../assets/img/mussi-perfil.jpg');
+  background-size: cover;
+  width: 100px;
+  background-position-x: 35%;
+}
+.nota .card-action{
+  text-align: right;
+}
+.nota .card-action > a{
+  color: #64b5f6!important;
+  font-weight: 700!important;
+}
+.nota .card-content > h4{
+  font-size: 24px;
+  margin: 0;
+}
+.nota .card-content > span{
+  font-size: 14px;
+  font-weight: 300;
+}

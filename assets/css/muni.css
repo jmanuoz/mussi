@@ -1,0 +1,22 @@
+.muni{
+  float: left;
+}
+.muni .card-image .card-title{
+  top: 0;
+  padding-top: 10px;
+  font-weight: 400;
+}
+.muni .card-action{
+  text-align: right;
+  padding: 10px 0;
+}
+.muni .card-action > a{
+  color: #616161!important;
+}
+.muni .card-action > span{
+  float: left;
+  margin: 3px 0 0 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+}

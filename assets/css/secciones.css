@@ -1,0 +1,26 @@
+.secciones{
+  width: 100%;
+  float: left;
+}
+.secciones .card-title{
+  font-weight: 700;
+}
+.secciones ul > li{
+  margin: 10px 0;
+}
+.secciones ul > li > h4{
+  color: #4fc3f7;
+  cursor: pointer;
+  font-size: 21px;
+  font-weight: 700;
+  margin: 0;
+  opacity: .9;
+  transition: ease .3s all;
+}
+.secciones ul > li > h4:hover{
+  opacity:1;  
+}
+.secciones ul > li > span{
+  color: #616161;
+  font-weight: 300;
+}
