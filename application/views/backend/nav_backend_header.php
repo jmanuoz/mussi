@@ -4,9 +4,7 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="<?php echo site_url('Backend/');?>">
-                        <img src="<?php echo base_url('assets/');?>/layouts/layout/img/logo-big.svg" alt="logo" class="logo-default" /> </a>
-                    <div class="menu-toggler sidebar-toggler"> </div>
+                    <div class="menu-toggler sidebar-toggler" style="float:left!important;"></div>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -32,7 +30,7 @@
                                     <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
                                        <?php foreach($notifications as $notification): ?>
                                             <li>
-                                            <a href="<?php 
+                                            <a href="<?php
                                             switch($notification->notifications_type_id){
                                                 case Notifications_model::NEW_MESSAGE:
                                                     echo site_url().'Messages/index/';
@@ -58,7 +56,7 @@
                                             </a>
                                             </li>
                                         <?php endforeach; ?>
-                                        
+
 
                                     </ul>
                                 </li>
@@ -74,7 +72,7 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
-                               
+
                                 <li>
                                     <a href="<?php echo site_url('Notifications/index') ?>">
                                         <i class="icon-envelope-open"></i> Notificaciones
@@ -149,13 +147,13 @@
                                     <a href="<?php echo site_url('Redes/instagram');?>" class="nav-link nav-toggle">
                                         <i class="icon-bar-chart"></i> Instagram
                                     </a>
-                                </li>     
+                                </li>
                                <li class="nav-item">
                                     <a href="<?php echo site_url('Redes/youtube');?>" class="nav-link nav-toggle">
                                         <i class="icon-bar-chart"></i> Youtube
                                     </a>
-                                </li>  
-                               
+                                </li>
+
                             </ul>
                         </li>
                         <li class="nav-item">

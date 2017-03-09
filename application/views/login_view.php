@@ -1,11 +1,24 @@
 <?php $errors = validation_errors(); ?>
+<style media="screen">
+  .logo{
+    border-radius: 50%!important;
+    background-image: url('../../assets/img/mussi-perfil.jpg');
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+    border-radius: 50%;
+    background-image: url("http://www.monteagudo.com.ar/demo/mussi/assets/img/mussi-perfil.jpg");
+  }
+  .content{
+    margin: 30px auto 10px;
+  }
+</style>
 <!-- BEGIN LOGIN FORM -->
 <div class="login">
 
   <!-- BEGIN LOGO -->
       <div class="logo">
-          <a href="index.html">
-              <img src="../assets/pages/img/logo-big.png" alt="" /> </a>
       </div>
       <!-- END LOGO -->
 

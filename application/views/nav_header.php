@@ -3,9 +3,7 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="<?php echo site_url('Home/index');?>">
-                <img src="<?php echo base_url('assets/'); ?>/layouts/layout/img/logo-big.svg" alt="logo" id="agora_logo" class="logo-default" /> </a>
-            <div class="menu-toggler sidebar-toggler"> </div>
+            <div class="menu-toggler sidebar-toggler" style="float:left;"></div>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -29,7 +27,7 @@
                         </li>
                         <li>
                             <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                                 <?php 
+                                 <?php
                                  foreach($notificaciones as $notificacion): ?>
                                 <li>
                                 <a href="<?php
@@ -64,9 +62,9 @@
                                         </span> <?php echo $notificacion->mensaje ?> </span>
                                 </a>
                                 </li>
-                            <?php endforeach; ?>                                        
-                                                              
-                               
+                            <?php endforeach; ?>
+
+
 
                             </ul>
                         </li>
@@ -173,19 +171,19 @@
                                                         <i class="icon-bar-chart"></i> <?php echo $encuesta->titulo ?></a>
                                                 </li>
                                                 <?php endforeach; ?>
-                                                
+
                                             </ul>
                                         </li>
                                         <?php endforeach?>
-                                        
+
                                     </ul>
-                                </li>              
+                                </li>
                                 <?php if(isset($informe)): ?>
                                 <li class="nav-item">
                                    <a href="<?php echo site_url('Informes_Medios/ver/');?>" class="nav-link">
                                         <i class="icon-feed"></i> Monitoreo Medios
                                     </a>
-                                    
+
                                 </li>
                                 <?php endif; ?>
                             </ul>
