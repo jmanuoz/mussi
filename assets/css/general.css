@@ -5,6 +5,16 @@
   padding-left: 15px;
 }
 
+@media (max-width: 992px) {
+  .container.main{
+    width: 100%!important;
+    margin: 0;
+  }
+  .timeline .card{
+    padding: 0 15px!important;
+  }
+}
+
 @media (min-width: 576px) {
   .container {
     width: 540px!important;

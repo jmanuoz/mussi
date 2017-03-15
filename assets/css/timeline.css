@@ -288,6 +288,11 @@
   overflow: hidden;
 }
 
+@media(max-width: 992px){
+  .timeline .card .card-content .contenido .BoxMedia .chica{
+    max-height: 150px!important;
+  }
+}
 
 .timeline .bottom-sheet.share-mobile .modal-content{
   padding: 0;
