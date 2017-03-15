@@ -49,6 +49,7 @@
 }
 .calendario .card-content > .interior ul{
   float: left;
+  width: 100%;
 }
 .calendario .card-content > .interior ul > li > .fecha{
   float: left;

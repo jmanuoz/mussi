@@ -35,6 +35,7 @@ header#head-large .nombre-perfil{
   font-weight: 700!important;
   bottom: 50px;
   font-size: 32px!important;
+  text-shadow: .5px .5px #616161;
 }
 header#head-large .card .card-content{
   font-family: 'Roboto', sans-serif;
