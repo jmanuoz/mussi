@@ -333,3 +333,23 @@
 .timeline .bottom-sheet.share-mobile ul > li.tw{
   background-color: #55acee;
 }
+
+.timeline .textArticle{
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.timeline .moreArticleBox{
+  width: 100%;
+  text-align: center;
+}
+.timeline .moreArticleBox > a#moreArticle{
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #616a83;
+  cursor: pointer;
+}
+.timeline .moreArticleBox > a#moreArticle > i{
+  margin-right: 5px;
+}

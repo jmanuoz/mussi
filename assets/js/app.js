@@ -3,9 +3,19 @@ $(document).ready(function(){
   const widthSidebar = $('.affix').width();
 
 
+
   var materialBox = function(){
     $('.materialboxed').materialbox();
     $('.modal').modal();
+
+    $('#moreArticle').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $('.textArticle').css({
+          'height': 'auto'
+      })
+      $(this).fadeOut('fast');
+    });
   }
   setInterval(
     materialBox,
