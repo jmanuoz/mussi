@@ -69,7 +69,6 @@
   float: left;
   width: 100%;
   margin-top: 20px;
-  border-radius: 3px;
 }
 .timeline .card-content > .contenido video{
   float: left;
@@ -281,11 +280,19 @@
   float: left;
 }
 
+.timeline .card .card-content .contenido .BoxMedia{
+  margin-top: 20px;
+}
+.timeline .card-content .contenido .BoxMedia img{
+  margin-top: 0!important;
+}
 .timeline .card .card-content .contenido .BoxMedia .chica{
   float: left;
   max-height: 200px!important;
   position: relative;
   overflow: hidden;
+  padding: 5px;
+  padding-top: 10px;
 }
 
 @media(max-width: 992px){
