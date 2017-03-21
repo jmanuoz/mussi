@@ -20,11 +20,22 @@ class Frontend extends CI_Controller {
   public function get_posts($start = 0, $limit = 5){
      $this->posts(true, $start, $limit);
   }
+
   public function get_post($idPost){
+
     $this->load->model('posts', '', TRUE);
-    $r = $this->posts->get_post($idPost);
-    echo json_encode($r);
+    $posts = $this->posts->get_post($idPost);
+
+    foreach ($posts as &$post) {
+        $post->categories = $this->posts->get_categories($post->posts_id);
+        $post->text = $this->putLinks($post->text);
+    }
+
+    echo json_encode($posts);
+
   }
+
+
 
   public function get_calendar(){
 
