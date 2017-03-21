@@ -9,7 +9,7 @@ Class Posts extends CI_Model {
     const INSTAGRAM_ID = 3;
 
     const YOUTUBE_ID = 4;
-    
+
     const CONVERSATION_ID = 5;
 
     public function create($social_net,$social_post_id,$date,$text,$media,$posted_by, $link){
@@ -38,7 +38,7 @@ Class Posts extends CI_Model {
             return 0;
         }
     }
-    
+
     public function remove_highlighted(){
         $sql = "UPDATE posts SET  "
                 . "highlighted = 0";
@@ -52,7 +52,7 @@ Class Posts extends CI_Model {
             return 0;
         }
     }
-    
+
     public function higlight_post($postId){
        $sql = "UPDATE posts SET  "
                 . "highlighted = 1 "
@@ -65,7 +65,7 @@ Class Posts extends CI_Model {
         }else{
 
             return 0;
-        } 
+        }
     }
 
    public function get_by_social_post_id($social_post_id, $social_net){
@@ -116,7 +116,7 @@ Class Posts extends CI_Model {
         $result = $query->result();
         return $result;
     }
-    
+
     public function get_categoriesAll(){
         $sql = "SELECT c.name as category_name, (SELECT count(categories_posts_id) as total
                 FROM categories_posts as cp
@@ -158,7 +158,7 @@ Class Posts extends CI_Model {
         $this->db->select('*');
         $this->db->order_by("date", "desc");
         $this->db->limit($limit, $start);
-        
+
         $query = $this->db->get();
 
         if ($query->num_rows() > 0){
@@ -167,4 +167,20 @@ Class Posts extends CI_Model {
           return array();
         }
     }
+
+    public function get_post($idPost){
+        $this->db->from('posts');
+        $this->db->select('*');
+        $this->db->order_by("date", "desc");
+        $this->db->where('posts_id', $idPost);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0){
+          return $query->result();
+        } else {
+          return array();
+        }
+    }
+
 }

@@ -10,12 +10,20 @@ class Frontend extends CI_Controller {
   public function index(){
     $this->load->view('frontend/index');
   }
+  public function post($idPost){
+    $this->load->view('frontend/post');
+  }
 
   public function get_followers(){
      $this->followers(true);
   }
   public function get_posts($start = 0, $limit = 5){
      $this->posts(true, $start, $limit);
+  }
+  public function get_post($idPost){
+    $this->load->model('posts', '', TRUE);
+    $r = $this->posts->get_post($idPost);
+    echo json_encode($r);
   }
 
   public function get_calendar(){
@@ -32,7 +40,7 @@ class Frontend extends CI_Controller {
         $items = $events_past['modelData']['items'];
         $lastEvent = array();
         $lastEvent1 = array_pop($items);
-        if($lastEvent1 != null){            
+        if($lastEvent1 != null){
             $lastEvent2 = array_pop($items);
             if($lastEvent2 != null){
                 $lastEvent[] = $lastEvent2;
