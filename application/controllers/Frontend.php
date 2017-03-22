@@ -129,6 +129,14 @@ class Frontend extends CI_Controller {
       return 0;
   }
 
+  public function get_fb_data_share($postId){
+    $this->load->model('posts', '', TRUE);
+
+    
+  }
+
+
+
 }
 
 ?>

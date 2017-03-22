@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1">
 
+    <!-- META TAGS SHARE FACEBOOK -->
+    <meta property="og:url" content="<?php echo base_url(uri_string());?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
+    <meta property="og:description" content="How much does culture influence creative thinking?" />
+    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+
+    <!-- META TAGS SHARE TWITTER -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@flickr" />
+    <meta name="twitter:title" content="Small Island Developing States Photo Submission" />
+    <meta name="twitter:description" content="View the album on Flickr." />
+    <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
+
     <title>Juan Patricio Mussi</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
