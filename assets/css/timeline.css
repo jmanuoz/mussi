@@ -314,30 +314,56 @@
 .timeline .bottom-sheet.share-mobile ul{
   margin: 0;
 }
-.timeline .bottom-sheet.share-mobile ul > li{
+.timeline .bottom-sheet.share-mobile ul li{
   color: #FFF;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 16px;
   padding: 15px 25px;
+  text-transform: none;
 }
-.timeline .bottom-sheet.share-mobile ul > li > i{
+.timeline .bottom-sheet.share-mobile ul a{
+  margin: 0!important;
+}
+.timeline .bottom-sheet.share-mobile ul li > i{
   margin-right: 10px;
 }
-.timeline .bottom-sheet.share-mobile ul > li.fb{
+.timeline .bottom-sheet.share-mobile ul li.fb{
   background-color: #3b5998;
 }
-.timeline .bottom-sheet.share-mobile ul > li.wh{
+.timeline .bottom-sheet.share-mobile ul li.wh{
   background-color: #4dc247;
 }
-.timeline .bottom-sheet.share-mobile ul > li.tw{
+.timeline .bottom-sheet.share-mobile ul li.tw{
   background-color: #55acee;
+}
+.timeline .bottom-sheet.share-mobile ul li.te{
+  background-color: #0088cc;
 }
 
 .timeline .textArticle{
   height: 200px;
   overflow: hidden;
   margin-bottom: 20px;
+}
+.timeline .textArticle p{
+  margin: 10px 0;
+  float: left;
+}
+.timeline .textArticle img{
+  width: 100%!important;
+  height: auto!important;
+}
+.timeline .textArticle blockquote{
+  width: 300px;
+  margin: 10px auto;
+  font-family: 'Roboto', sans-serif;
+  color: #CCC;
+  font-weight: 900;
+  text-align: center;
+  font-size: 28px;
+  border-left: 0!important;
+  font-style: italic;
 }
 .timeline .moreArticleBox{
   width: 100%;
