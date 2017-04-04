@@ -1,3 +1,5 @@
+<?php header("Access-Control-Allow-Origin: *");
+ ?>
 <!DOCTYPE html>
 <html>
 <head lang="es">
@@ -26,6 +28,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/');?>/css/card-articulo.css" media="screen" title="no title" charset="utf-8">
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7dNJE7C3mPlWhcHpTGsh1QJNyjfVa5BY"></script>
+    <script src="https://twemoji.maxcdn.com/2/twemoji.min.js"></script>
 
 </head>
 <body>

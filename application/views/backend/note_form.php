@@ -62,7 +62,7 @@
 
           <div class="form-group">
             <label for="editor">Contenido:</label>
-            <textarea name ="content" id="editor">
+            <textarea name="content" class="summernote" id="editor">
                         <?php echo isset($note)?$note->text:'' ?>
             </textarea>
           </div>

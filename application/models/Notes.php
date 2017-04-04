@@ -48,7 +48,22 @@ Class Notes extends CI_Model {
             return array();
         }
     }
-    
+
+    public function get_note($idNote){
+        $this->db->from('notes');
+        $this->db->where('notes_id', $note_id);
+        $this->db->limit(1);
+        $this->db->select("notes_id,title,SUBSTRING(content,1,30) as text,image,date");
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+
     public function get_full_notes($limit, $start, $note_id=null){
         $this->db->from('notes');
         if(isset($note_id)){

@@ -49,3 +49,9 @@
   top: auto;
   float: left;
 }
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 0 0 0;
+    vertical-align: -0.1em;
+}

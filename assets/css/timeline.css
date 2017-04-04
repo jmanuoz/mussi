@@ -305,8 +305,9 @@
   padding: 0;
 }
 .timeline .bottom-sheet.share-mobile .modal-content > h4{
-  padding: 20px;
+  padding: 15px;
   margin-bottom: 0;
+  font-size: 1.5em;
 }
 .timeline .bottom-sheet.share-mobile .modal-content{
   padding: 0;
@@ -355,13 +356,13 @@
   height: auto!important;
 }
 .timeline .textArticle blockquote{
-  width: 300px;
+  width: 75%;
   margin: 10px auto;
   font-family: 'Roboto', sans-serif;
   color: #CCC;
   font-weight: 900;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   border-left: 0!important;
   font-style: italic;
 }

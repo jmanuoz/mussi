@@ -164,6 +164,8 @@ class CI_Controller {
     }
 
     public function followers($doEcho = true) {
+      header("Access-Control-Allow-Origin: *");
+
         $this->load->model('socialnets', '', TRUE);
         $result = $this->socialnets->get_followers();
         if ($doEcho) {
@@ -174,6 +176,8 @@ class CI_Controller {
     }
 
     public function posts($doEcho = true, $start = 0, $limit = 5) {
+      header("Access-Control-Allow-Origin: *");
+
         $this->load->model('posts', '', TRUE);
         $this->load->model('notes', '', TRUE);
         $posts = $this->posts->get_posts($limit, $start);
@@ -201,12 +205,12 @@ class CI_Controller {
     function order_posts($a, $b) {
         return (strtotime($a->date) > strtotime($b->date)) ? -1 : 1;
     }
-    
+
     protected function putLinks($cadena_origen){
         $cadena_resultante= preg_replace("/((http|https|www)[^\s]+)/", '<a href="$1">$0</a>', $cadena_origen);
-        //miro si hay enlaces con solamente www, si es así le añado el http://
+        //miro si hay enlaces con solamente www, si es asï¿½ le aï¿½ado el http://
         $cadena_resultante= preg_replace("/href=\"www/", 'href="http://www', $cadena_resultante);
-        
+
 
         //saco los enlaces de twitter
         $cadena_resultante = preg_replace("/(@[^\s]+)/", '<a target=\"_blank\"  href="http://twitter.com/intent/user?screen_name=$1">$0</a>', $cadena_resultante);

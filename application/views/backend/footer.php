@@ -70,6 +70,8 @@
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
 
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
+        
         <script src="<?php echo base_url('assets/');?>/global/scripts/app.min.js" type="text/javascript"></script>
 
        <script src="<?php echo base_url('assets/');?>/js/nav_backend_header.js" type="text/javascript"></script>
